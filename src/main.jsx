@@ -2,16 +2,22 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
-import Home from "./pages/home/home";
+import Dashboard from "./pages/dashboard/Dashboard";
+import Login from "./pages/login/Login";
+import Signup from "./pages/signup/Signup";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Home />,
+    element: <Dashboard />,
   },
   {
-    path: "about",
-    element: <div>About Frontend</div>,
+    path: "login",
+    element: <Login/>,
+  },
+  {
+    path: "register",
+    element: <Signup/>,
   },
 ]);
 
