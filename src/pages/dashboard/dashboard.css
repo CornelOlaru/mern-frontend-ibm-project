@@ -1,0 +1,10 @@
+.user-table{
+    border: 1px solid #fff;
+ 
+    margin: 0 auto;
+}
+ thead, tbody, tr, td, th{
+    
+    border: 1px solid #fff;
+    padding: 10px;
+}
