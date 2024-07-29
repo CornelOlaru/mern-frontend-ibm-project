@@ -17,7 +17,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/users", {
+        const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/users", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -37,7 +37,7 @@ const Dashboard = () => {
   }, [token, navigate]);
 
 
-  
+
   return (
     <main>
       <Navbar />
