@@ -19,6 +19,7 @@ const router = createBrowserRouter([
     path: "register",
     element: <Signup/>,
   },
+ 
 ]);
 
 createRoot(document.getElementById("root")).render(
