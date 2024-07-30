@@ -8,6 +8,8 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const token = localStorage.getItem("token");
+  const soaps = products.filter(product => product.category === 'Soaps');
+  const candles = products.filter(product => product.category === 'Candles');
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -38,6 +40,7 @@ const Dashboard = () => {
       }
     };
 
+    
     if (token) {
       fetchUsers();
       fetchProducts();
@@ -71,6 +74,45 @@ const Dashboard = () => {
         </section>
 
         <section>
+          <h2>Soaps</h2>
+          <div className="products-container">
+            {soaps.map((product) => (
+              <div key={product._id} className="product-card">
+                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                <div className="product-info">
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-price">Price: {product.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Candles</h2>
+          <div className="products-container">
+            {candles.map((product) => (
+              <div key={product._id} className="product-card">
+                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                <div className="product-info">
+                  <h3 className="product-name">{product.name}</h3>
+                  <p className="product-price">Price: {product.price}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2>Contact Details</h2>
+          <div className="contact-details">
+            <p>Email: support@aromia.ro</p>
+            <p>Phone: +40770955987</p>
+            <p>Address: Strada Magnoliei, Nr 24</p>
+          </div>
+        </section>
+
+        {/* <section>
           <h2>Products</h2>
           <table className="product-table">
             <thead>
@@ -95,11 +137,11 @@ const Dashboard = () => {
         <section>
           <h2>Contact Details</h2>
           <div className="contact-details">
-            <p>Email: support@ecommerceapp.com</p>
-            <p>Phone: +1 234 567 890</p>
-            <p>Address: 123 E-commerce St, Shop City, EC 12345</p>
+            <p>Email: support@aromia.ro</p>
+            <p>Phone: +40770955987</p>
+            <p>Address: Strada Magnoliei, Nr 24</p>
           </div>
-        </section>
+        </section> */}
       </div>
     </main>
   );
