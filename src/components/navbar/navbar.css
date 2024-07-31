@@ -1,19 +1,19 @@
-.header{
-    width: 100%;
+.header {
+    
+    background-image: 
+    linear-gradient(
+      rgba(162, 159, 159, 0.5),  
+      rgba(112, 108, 108, 0.5)  
+    ), 
+    url('../../images/backround.jpg');
+    background-size: cover; 
+    background-position: center;
+    padding: 30px; 
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    background-color: var(--gray);
-    position: fixed;
-}
-
-.nav-logo{
-margin-right: 1%;
-margin-left: 1%;
-color: black;
-text-decoration: none;
-text-align: center;
-}
+    justify-content: space-between;
+    align-items: center;
+  }
+  
 
 .nav-links{
     display: flex;
@@ -27,9 +27,19 @@ text-align: center;
     margin-right: 25px;
     text-decoration: none;
     font-weight: 700;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .nav-link:hover{
-    color: rgb(181, 115, 243);
+    color: rgb(78, 121, 84);
 }
+
+.logo-icon{
+    height: 170px;
+    width: 200px;
+   
+}
+.cart-icon {
+    height: 39px;
+    width: 60px;
+  }
