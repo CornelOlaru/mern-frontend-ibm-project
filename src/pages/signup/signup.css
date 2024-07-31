@@ -6,7 +6,23 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #fff;
+    
+    &::before{
+      content: "";
+      position: absolute;
+      top: 0px;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image:url("D:\IBM Summer Practice\mern-frontend-ecommerce-project\src\assets\backround-about.jpg");
+      background-size: cover;
+      background-position: center;
+      
+      /* opacity: 0.35; */
+      filter: blur(8px);
+  -webkit-filter: blur(8px);
+      z-index: -1;
+    }
 }
 
 /* Login form styling */
@@ -21,7 +37,7 @@
     border: 2px solid var(--purple);
     padding: 20px;
     border-radius: 10px;
-    background-color: var(--purple);
+    background-color: var(--light-gray);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -87,14 +103,14 @@ input:focus::placeholder{
   background-color: var(--dark-purple);
 }
 .login-link{
-  color: #fff;
+  color: var(--black);
   text-align: center;
   width: fit-content;
   margin: 0 auto;
 }
 .login-link:hover{
   /* color: rgba(203, 140, 255, 0.5); */
-  color: #000;
+  color: var(--black);
 }
 
 /* Media queries for responsiveness */
