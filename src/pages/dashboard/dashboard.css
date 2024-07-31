@@ -1,10 +1,53 @@
 .user-table{
-    border: 1px solid #fff;
+    border: 1px solid #417556;
  
     margin: 0 auto;
 }
  thead, tbody, tr, td, th{
     
-    border: 1px solid #fff;
+    border: 1px solid #595454;
     padding: 10px;
 }
+.h2 {
+    margin-left: 2px;
+}
+.products-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px; 
+    justify-items: center; 
+  }
+  
+  .product-card {
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgb(78, 121, 84);
+    overflow: hidden;
+    width: 200px;
+    text-align: center;
+    padding: 15px;
+  }
+  
+  .product-image {
+    width: 100%;
+    height: auto;
+    object-fit: cover; 
+  }
+  
+  .product-info {
+    margin-top: 10px;
+  }
+  
+  .product-name {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+  }
+  
+  .product-price {
+    font-size: 16px;
+    color: #888;
+  }
+  
+  
