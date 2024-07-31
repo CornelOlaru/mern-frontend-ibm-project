@@ -5,6 +5,7 @@ import "./index.css";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
+import ProductDetails from "./pages/productPage/productDetails";
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Signup/>,
+  },
+  {
+    path: "product/:productId", 
+    element: <ProductDetails />,
   },
  
 ]);

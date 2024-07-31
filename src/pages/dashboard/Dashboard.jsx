@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./dashboard.css";
 
 const Dashboard = () => {
@@ -11,6 +12,19 @@ const Dashboard = () => {
   const soaps = products.filter(product => product.category === 'Soaps');
   const candles = products.filter(product => product.category === 'Candles');
 
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const response = await axios.get('/api/products');
+        setProducts(response.data);
+      } catch (error) {
+        console.error('Error fetching the products', error);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -54,31 +68,13 @@ const Dashboard = () => {
       <Navbar />
       <div className="dashboard-content">
         <section>
-          <h2>Users</h2>
-          <table className="user-table">
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Email</th>
-              </tr>
-            </thead>
-            <tbody>
-              {users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <h2>Soaps</h2>
+         <h2>Soaps</h2>
           <div className="products-container">
             {soaps.map((product) => (
               <div key={product._id} className="product-card">
-                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                <Link to={`/product/${product._id}`}>
+                  <img src={product.imageUrl.url} alt={product.imageUrl.filename} className="product-image" />
+                </Link>
                 <div className="product-info">
                   <h3 className="product-name">{product.name}</h3>
                   <p className="product-price">Price: {product.price}</p>
@@ -93,7 +89,9 @@ const Dashboard = () => {
           <div className="products-container">
             {candles.map((product) => (
               <div key={product._id} className="product-card">
-                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                <Link to={`/product/${product._id}`}>
+                  <img src={product.imageUrl.url} alt={product.imageUrl.filename} className="product-image" />
+                </Link>
                 <div className="product-info">
                   <h3 className="product-name">{product.name}</h3>
                   <p className="product-price">Price: {product.price}</p>

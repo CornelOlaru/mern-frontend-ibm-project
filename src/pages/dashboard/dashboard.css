@@ -8,6 +8,9 @@
     border: 1px solid #595454;
     padding: 10px;
 }
+.h2 {
+    margin-left: 2px;
+}
 .products-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr); 
