@@ -1,26 +1,111 @@
-main{
-    
-    
-    margin: 0 auto;
-}
-.signup-form{
+  
+
+/* Container for the login */
+.signup-container {
     display: flex;
-    flex-direction: column;
-    max-width: 300px;
     justify-content: center;
     align-items: center;
-    margin: 0 auto;
-    height: auto;
-    border: 1px solid #ffff;
-    padding: 10px;
-    border-radius: 10px  ;
+    height: 100vh;
+    background-color: #fff;
 }
 
-label{
-    width: auto;
-    margin: 10px 0;
+/* Login form styling */
+.signup-form {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    width: 90%;
+    /* height: 45vh; */
+    max-width: 400px; /* Maximum width for larger screens */
+    border: 2px solid var(--purple);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--purple);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title of the form */
+.form-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600 ;
+    margin-top: 0;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.form-row{
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 0 auto;
+
+}
+.form-label{
+  color: var(--black);
+  font-size: 1.2rem;
+  padding:0 10px;
+  margin:   0px 10px;
+}
+.form-input{
+  color: var(--black);
+  background-color: rgb(255, 253, 253);
+  border: none;
+  border-bottom: 1px solid #000;
+  border-radius: 20px;
+  padding: 10px;
+  margin:10px 10px;
+  -webkit-box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
+-moz-box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
+box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
+font-size: 1rem;
+}
+
+input:focus::placeholder{
+  color: transparent;
+}
+.form-input:active{
+  place-content: "";
 }
 
 .form-button{
-    margin: 10px 0;
+  font-size: 1.2rem;
+  width: 75%;
+  margin: 20px auto;
+  margin-bottom: 0;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 0;
+  /* background-color: rgba(203, 140, 255, 0.5); */
+  background-color: var(--purple);
+  cursor: pointer;
+  color: #000;
+  border: 1px solid var(--purple);
+}
+.form-button:hover{
+  background-color: var(--dark-purple);
+}
+.login-link{
+  color: #fff;
+  text-align: center;
+  width: fit-content;
+  margin: 0 auto;
+}
+.login-link:hover{
+  /* color: rgba(203, 140, 255, 0.5); */
+  color: #000;
+}
+
+/* Media queries for responsiveness */
+@media (min-width: 768px) {
+    .login-form {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login-form {
+        width: 30%;
+    }
 }
