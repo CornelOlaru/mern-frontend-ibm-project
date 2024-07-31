@@ -14,12 +14,12 @@ const handleClick = () => {
     <header className='header'>
         <Link to="/" className='nav-logo'><h1>Aromia</h1></Link>
       <nav className='nav-links'>
-        {token ? <button onClick={handleClick}>Logout</button> : 
+        {/* {token ? <button onClick={handleClick}>Logout</button> : 
             <>
             <Link to="/login" className='nav-link'>Login</Link>
             <Link to="/register" className='nav-link'>Sign Up</Link>
             </>
-        }
+        } */}
       </nav>
     </header>
   )
