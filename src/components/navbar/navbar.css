@@ -10,7 +10,7 @@
     background-position: center;
     padding: 30px; 
     display: flex;
-
+}
 .nav-links{
     display: flex;
     flex-direction: row;
