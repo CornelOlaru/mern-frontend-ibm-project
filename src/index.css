@@ -11,12 +11,14 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  --purple: rgba(203, 140, 255, 0.5);
+  --purple: rgba(203, 140, 255, 0.8);
   --white: #ffffff;
+  --light-gray: rgba(240, 240, 240, 0.87);
   --black:rgba(22, 22, 22, 0.87);
+  --light-dark:rgba(22, 22, 22, 0.37);
   --transparent: transparent;
   --dark-purple: rgba(188, 111, 252, 0.5);
-  --gray:#EAEAEA;
+  --gray:rgba(200, 200, 200, 0.9);
 }
 
 body {

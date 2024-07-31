@@ -1,5 +1,6 @@
 .footer-container {
   width: 100%;
+  background-color: var(--light-gray);
 }
 
 .footer-grid {
