@@ -44,6 +44,7 @@ const Login = () => {
     }
   };
   return (
+    <>
     <main>
       <Navbar />
       <div className="login-container">
@@ -80,7 +81,7 @@ const Login = () => {
               value={formData.password}
               onChange={handleInputChange}
               required
-            />
+              />
           </div>
           <button className="form-button" type="submit">
             Login
@@ -92,6 +93,7 @@ const Login = () => {
       </div>
       <Footer/>
     </main>
+              </>
   );
 };
 
