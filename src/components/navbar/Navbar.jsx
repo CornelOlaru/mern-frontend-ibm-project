@@ -19,7 +19,7 @@ const handleClick = () => {
         <img src={logoImage} alt="Logo" className="logo-icon" />
        </Link>
       <nav className='nav-links'>
-        {/* {token ? <button onClick={handleClick}>Logout</button> : 
+        {token ? <button onClick={handleClick}>Logout</button> : 
             <>
             <Link to="/login" className='nav-link'>Login</Link>
             <Link to="/register" className='nav-link'>Sign Up</Link>
@@ -28,7 +28,7 @@ const handleClick = () => {
             <Link to="/cart" className='nav-link'>
             <img src={cartImage} alt="Cart" className="cart-icon" /></Link>
             </>
-        } */}
+        }
       </nav>
     </header>
   )
