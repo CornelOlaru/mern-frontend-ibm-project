@@ -1,7 +1,8 @@
   
 
-/* Container for the login */
+/* Container for the register */
 .signup-container {
+  position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -33,7 +34,7 @@
     /* align-items: center; */
     width: 90%;
     /* height: 45vh; */
-    max-width: 400px; /* Maximum width for larger screens */
+    max-width: 400px;/* Maximum width for larger screens*/
     border: 2px solid var(--purple);
     padding: 20px;
     border-radius: 10px;
@@ -65,6 +66,7 @@
   margin:   0px 10px;
 }
 .form-input{
+  display: flex;
   color: var(--black);
   background-color: rgb(255, 253, 253);
   border: none;
@@ -76,8 +78,21 @@
 -moz-box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
 box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
 font-size: 1rem;
-}
+align-items: center;
+outline: none;
 
+}
+.form-input img {
+  margin: 0 5px;
+  aspect-ratio: 1/1;
+  width: 15px;
+}
+.form-input input {
+  margin: 0;
+  flex: 1;
+  border: none;
+  background: none;
+}
 input:focus::placeholder{
   color: transparent;
 }
@@ -112,7 +127,18 @@ input:focus::placeholder{
   /* color: rgba(203, 140, 255, 0.5); */
   color: var(--black);
 }
-
+.eye-password3{
+  
+  width: fit-content;
+  height: fit-content;
+  
+}
+.form-input input{
+  font-size: 1rem;
+  color: #000;
+  border-radius: 20px;
+  outline: none;
+}
 /* Media queries for responsiveness */
 @media (min-width: 768px) {
     .login-form {

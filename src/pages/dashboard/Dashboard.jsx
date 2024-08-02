@@ -3,6 +3,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./dashboard.css";
+import Footer from "../../components/footer/Footer";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -12,18 +13,18 @@ const Dashboard = () => {
   const soaps = products.filter(product => product.category === 'Soaps');
   const candles = products.filter(product => product.category === 'Candles');
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const response = await axios.get('/api/products');
-        setProducts(response.data);
-      } catch (error) {
-        console.error('Error fetching the products', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get('/api/products');
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching the products', error);
+  //     }
+  //   };
 
-    fetchProducts();
-  }, []);
+  //   fetchProducts();
+  // }, []);
   
   useEffect(() => {
     const fetchUsers = async () => {
@@ -55,12 +56,12 @@ const Dashboard = () => {
     };
 
     
-    if (token) {
-      fetchUsers();
-      fetchProducts();
-    } else {
-      navigate("/login");
-    }
+    fetchProducts();
+    // if (token) {
+    //   fetchUsers();
+    // } else {
+    //   navigate("/login");
+    // }
   }, [token, navigate]);
 
   return (
@@ -101,14 +102,14 @@ const Dashboard = () => {
           </div>
         </section>
 
-        <section>
+        {/* <section>
           <h2>Contact Details</h2>
           <div className="contact-details">
             <p>Email: support@aromia.ro</p>
             <p>Phone: +40770955987</p>
             <p>Address: Strada Magnoliei, Nr 24</p>
           </div>
-        </section>
+        </section> */}
 
         {/* <section>
           <h2>Products</h2>
@@ -141,6 +142,7 @@ const Dashboard = () => {
           </div>
         </section> */}
       </div>
+      <Footer/>
     </main>
   );
 };

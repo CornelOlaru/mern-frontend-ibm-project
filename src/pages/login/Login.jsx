@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+
+
+
+
+
+
+
 const Login = () => {
+
+
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(true);
+  const [validPwd, setValidPwd] = useState(false);
+  const [pwdFocus, setPwdFocus] = useState(false);
+  
+
+  
+  const showPasswordFunction = () => {
+    setShowPassword(!showPassword);
+  }
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -71,17 +90,22 @@ const Login = () => {
             <label className="form-label" >
               Password
             </label>
+            <div className="form-input">
 
             <input
-              className="form-input"
+              className=""
               id="password"
               name="password"
-              type="password"
+              type={showPassword ? "password":"text"}
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
+              onFocus={() => setPwdFocus(true)}
+              onBlur={() => setPwdFocus(false)}
               required
               />
+            <span className="eye-password" onClick={showPasswordFunction}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</span>
+              </div>
           </div>
           <button className="form-button" type="submit">
             Login
