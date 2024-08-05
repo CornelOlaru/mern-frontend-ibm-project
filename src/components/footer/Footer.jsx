@@ -13,8 +13,8 @@ const Footer = () => {
                 <Link>Shop all</Link>
                 <Link>For Body</Link>
                 <Link>For Home</Link>
-                <Link>About</Link>
-                <Link>Contact</Link>
+                <Link to="/about">About</Link>
+                <Link to="/contact">Contact</Link>
             </ul>
             </div>
             <div className='footer-help'>
