@@ -3,11 +3,11 @@ import "./signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { FaInfoCircle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 //Validarea pentru user si parola
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/;
-
+const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -20,6 +20,10 @@ const Signup = () => {
   const [showRetypedPassword, setShowRetypedPassword] = useState(true);
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
+  const [validEmail, setvalidEmail] = useState(false);
+  const [emailFocus, setEmailFocus] = useState(false);
+  const [validConfirmedPass, setValidConfirmedPass] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
 
   const showPasswordFunction = () => {
@@ -28,7 +32,6 @@ const Signup = () => {
   const showRetypedPasswordFunction = () => {
     setShowRetypedPassword(!showRetypedPassword);
   };
-
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -41,6 +44,11 @@ const Signup = () => {
   useEffect(() => {
     setValidPwd(PWD_REGEX.test(formData.password));
   }, [formData.password]);
+
+  useEffect(() => {
+    setvalidEmail(EMAIL_REGEX.test(formData.email));
+  }, [formData.email]);
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -55,17 +63,24 @@ const Signup = () => {
       const result = await response.json();
       console.log(result);
       if (response.ok) {
+        alert("Account created succesfully!")
         navigate("/login");
         return result;
+      } else {
+        setErrorMessage(result.message || "Registration failed. Please try again.");
+
       }
     } catch (error) {
       console.log(error.message);
+      setErrorMessage(error.message);
+
     } finally {
       setFormData({
         name: "",
         email: "",
         password: "",
       });
+      setConfirmPassword("");
     }
   };
 
@@ -76,6 +91,15 @@ const Signup = () => {
         <div className="signup-container">
           <form onSubmit={handleSubmit} className="signup-form">
             <h1 className="form-title">Sign up</h1>
+
+            {errorMessage && (
+              <p className="error-message">
+                <FaInfoCircle style={{ marginRight: "5px" }} />
+                {errorMessage}
+              </p>
+            )}
+
+
             <div className="form-row">
               <label className="form-label">Name</label>
               <input
@@ -98,46 +122,79 @@ const Signup = () => {
                 placeholder="Enter email"
                 value={formData.email}
                 onChange={handleInputChange}
+                onFocus={() => setEmailFocus(true)}
+                onBlur={() => setEmailFocus(false)}
                 required
               />
             </div>
-
+            <p
+              id="emailnote"
+              className={emailFocus && !validEmail ? "instructions" : "offscreen"}
+            >
+              <FaInfoCircle
+                style={{ marginRight: "5px" }}
+                
+              />
+              Please enter a valid email address.
+              <br />
+              Example: user@example.com
+            </p>
             <div className="form-row">
               <label className="form-label">Password</label>
               <div className="form-input">
-
-              <input
-                className=""
-                id="password"
-                name="password"
-                type={showPassword ? "password":"text"}
-                placeholder="Password"
-                value={formData.password}
-                onChange={handleInputChange}
-                required
+                <input
+                  className=""
+                  id="password"
+                  name="password"
+                  type={showPassword ? "password" : "text"}
+                  placeholder="Password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  onFocus={() => setPwdFocus(true)}
+                onBlur={() => setPwdFocus(false)}
+                  required
                 />
 
-            <span className="" onClick={showPasswordFunction}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</span>
-                </div>
-
+                <span className="" onClick={showPasswordFunction}>
+                  {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                </span>
+              </div>
             </div>
+            <p
+              id="pwdnote"
+              className={pwdFocus && !validPwd ? "instructions" : "offscreen"}
+            >
+              <FaInfoCircle style={{ marginRight: "5px" }} />
+              8 to 24 characters.
+              <br />
+              Must include uppercase and lowercase letters, a number and a
+              special character.
+              <br />
+              Allowed special characters:
+              <span aria-label="exclamation mark">!</span>
+              <span aria-label="at symbol">@</span>
+              <span aria-label="hashtag">#</span>
+              <span aria-label="dollar sign">$</span>
+              <span aria-label="percent">%</span>
+              <span aria-label="percent">_</span>
+            </p>
             <div className="form-row">
               <label className="form-label">Confirm Password</label>
               <div className="form-input">
-
-              <input
-                className=""
-                id="ConfirmPassword"
-                name="password"
-                type={showRetypedPassword ? "password":"text"}
-                placeholder="Password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required
+                <input
+                  className=""
+                  id="ConfirmPassword"
+                  name="password"
+                  type={showRetypedPassword ? "password" : "text"}
+                  placeholder="Password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  required
                 />
-              <span className="" onClick={showRetypedPasswordFunction}>{showRetypedPassword ? <FaRegEye /> : <FaRegEyeSlash />}</span>
-                </div>
-
+                <span className="" onClick={showRetypedPasswordFunction}>
+                  {showRetypedPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                </span>
+              </div>
             </div>
             <button className="form-button" type="submit">
               Sign up

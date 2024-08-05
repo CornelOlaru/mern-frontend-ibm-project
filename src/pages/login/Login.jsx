@@ -3,7 +3,7 @@ import "./login.css";
 import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
-import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { FaInfoCircle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 
 
@@ -20,9 +20,8 @@ const Login = () => {
     password: "",
   });
   const [showPassword, setShowPassword] = useState(true);
-  const [validPwd, setValidPwd] = useState(false);
-  const [pwdFocus, setPwdFocus] = useState(false);
-  
+  const [errorMessage, setErrorMessage] = useState("");
+
 
   
   const showPasswordFunction = () => {
@@ -51,9 +50,12 @@ const Login = () => {
       if (response.ok) {
         navigate("/");
         return result;
+      } else {
+        setErrorMessage(result.message || "Login failed. Please try again.");
       }
     } catch (error) {
       console.log(error.message);
+      setErrorMessage(error.message);
     } finally {
       setFormData({
         name: "",
@@ -69,6 +71,13 @@ const Login = () => {
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <h1 className="form-title">Login</h1>
+
+          {errorMessage && (
+              <p className="error-message">
+                <FaInfoCircle style={{ marginRight: "5px" }} />
+                {errorMessage}
+              </p>
+            )}
 
           <div className="form-row">
             <label className="form-label">
@@ -100,8 +109,7 @@ const Login = () => {
               placeholder="Password"
               value={formData.password}
               onChange={handleInputChange}
-              onFocus={() => setPwdFocus(true)}
-              onBlur={() => setPwdFocus(false)}
+             
               required
               />
             <span className="eye-password" onClick={showPasswordFunction}>{showPassword ? <FaRegEye /> : <FaRegEyeSlash />}</span>

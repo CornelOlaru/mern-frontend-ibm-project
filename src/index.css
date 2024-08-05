@@ -27,3 +27,12 @@ body {
   padding: 0;
   
 }
+
+.error-message{
+  width: 70%;
+  margin: 0 auto;
+  outline: red;
+  color: red;
+  font-size: 1rem;
+  /* margin-left: 15%; */
+}

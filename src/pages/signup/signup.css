@@ -139,6 +139,23 @@ input:focus::placeholder{
   border-radius: 20px;
   outline: none;
 }
+.offscreen {
+  display: none;
+}
+
+.instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  /* position: relative; */
+  bottom: -50px;
+  width: 70%;
+  margin: 0 auto;
+
+}
+
 /* Media queries for responsiveness */
 @media (min-width: 768px) {
     .login-form {
