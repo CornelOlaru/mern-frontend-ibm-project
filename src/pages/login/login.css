@@ -106,13 +106,21 @@ input:focus::placeholder{
   background-color: var(--dark-purple);
 }
 .register-link{
-  color: #fff;
+  color: #000;
   text-align: center;
   width: fit-content;
   margin: 0 auto;
 }
 .register-link:hover{
   /* color: rgba(203, 140, 255, 0.5); */
+  color: #000;
+}
+
+.eye-password{
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  
   color: #000;
 }
 

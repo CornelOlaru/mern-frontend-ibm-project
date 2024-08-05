@@ -6,6 +6,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import ProductDetails from "./pages/productPage/productDetails";
+import Products from "./pages/products/Products";
 import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact"
 
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "register",
     element: <Signup/>,
+  },
+  {
+    path: "products", 
+    element: <Products />,
   },
   {
     path: "product/:productId", 
