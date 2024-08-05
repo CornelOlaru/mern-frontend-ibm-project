@@ -1,68 +1,63 @@
-/* src/components/productDetails.css */
 
 .products-details {
     display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-    padding: 20px;
-    margin: 0 auto;
-    max-width: 1200px;
-    background-color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    gap: 20px;
-  }
-  
-  .products-image {
-    width: 300px;
-    height: auto;
-    border-radius: 8px;
-  }
-  
-  .products-info {
-    flex-grow: 1;
-    display: flex;
     flex-direction: column;
-    gap: 10px;
+    align-items: center;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .products-name {
-    font-size: 2em;
-    margin: 0;
+  /* Style for product image */
+  .products-image {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  
+  /* Container for product information */
+  .products-info {
+    text-align: center;
     color: #333;
   }
   
+  /* Style for product name */
+  .products-name {
+    font-size: 2em;
+    margin: 0;
+    color: #444;
+  }
+  
+  /* Style for product description */
   .products-description {
     font-size: 1.2em;
-    color: #666;
+    margin: 10px 0;
+    color: #417556;
   }
   
+  /* Style for product price */
   .products-price {
     font-size: 1.5em;
-    color: #b12704;
-    font-weight: bold;
+    margin: 10px 0;
+    color: #27ae60;
   }
   
-  .products-category, .products-stock {
-    font-size: 1em;
-    color: #555;
+  /* Style for product category */
+  .products-category {
+    font-size: 1.2em;
+    margin: 5px 0;
+    color: #888;
   }
   
-  @media (max-width: 768px) {
-    .products-details {
-      flex-direction: column;
-      align-items: center;
-      padding: 10px;
-    }
-  
-    .products-image {
-      width: 100%;
-      max-width: 300px;
-    }
-  
-    .products-info {
-      align-items: center;
-      text-align: center;
-    }
+  /* Style for product stock */
+  .products-stock {
+    font-size: 1.2em;
+    margin: 5px 0;
+    color: #e74c3c;
   }
   
