@@ -4,6 +4,9 @@ import axios from 'axios';
 import './productDetails.css';
 
 const ProductDetails = () => {
+  const { productId } = useParams();
+  const [product, setProduct] = useState([]);
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -26,14 +29,17 @@ const ProductDetails = () => {
   }
   return (
     <div className="products-details">
-      <img src={product.imageUrl.url} alt={product.imageUrl.filename} className="products-image" />
+      
+
+       <img src={product.imageUrl} alt={product.name} className="products-image" />
       <div className="products-info">
         <h1 className="products-name">{product.name}</h1>
         <p className="products-description">{product.description}</p>
         <p className="products-price">Price: {product.price}</p>
         <p className="products-category">Category: {product.category}</p>
         <p className="products-stock">Stock: {product.stock}</p>
-      </div>
+      </div> 
+
     </div>
   );
 };
