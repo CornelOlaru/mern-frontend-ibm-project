@@ -46,6 +46,9 @@ const Login = () => {
       });
       const result = await response.json();
       localStorage.setItem("token", result.token);
+      if (!result.token) {
+        localStorage.clear("token", result.token)
+      }
       console.log(result);
       if (response.ok) {
         navigate("/");

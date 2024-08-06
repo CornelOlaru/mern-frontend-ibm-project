@@ -21,11 +21,11 @@
   --gray:rgba(200, 200, 200, 0.9);
 }
 
-body {
+html, body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
+  overflow-x: hidden;
 }
 
 .error-message{
