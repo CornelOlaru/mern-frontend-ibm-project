@@ -39,11 +39,14 @@ const Login = () => {
       localStorage.setItem("token", result.token);
       if (!result.token) {
         localStorage.clear("token", result.token);
+        navigate("/");
       }
       localStorage.getItem("token", result.token);
       const decoded = jwtDecode(result.token);
       console.log(decoded);
       console.log(result);
+      if (!result.token) {
+      }
       if (decoded.role == "admin" && response.ok) {
         navigate("/admin");
       } else if (decoded.role == "distributor" && response.ok) {

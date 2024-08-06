@@ -11,6 +11,7 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact"
 import Admin from "./pages/admin/Admin";
 import Distributor from "./pages/distributor/Distributor";
+import ProtectedRoutes from "./components/protectedRoute/ProtectedRoutes";
 
 const router = createBrowserRouter([
   {
@@ -42,13 +43,23 @@ const router = createBrowserRouter([
     element: <Contact/>,
   },
   {
-    path: "admin",
-    element: <Admin/>,
+    element: <ProtectedRoutes roles={["admin"]} />,
+    children: [
+      {
+        path: "admin",
+        element: <Admin />,
+      },
+    ],
   },
   {
-    path: "distributor",
-    element: <Distributor/>,
-  }
+    element: <ProtectedRoutes roles={["distributor"]} />,
+    children: [
+      {
+        path: "distributor",
+        element: <Distributor />,
+      },
+    ],
+  },
 ]);
 
 createRoot(document.getElementById("root")).render(

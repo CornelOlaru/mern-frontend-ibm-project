@@ -10,4 +10,4 @@ const Distributor = () => {
   )
 }
 
-export default Distributor
+export default Distributor;
