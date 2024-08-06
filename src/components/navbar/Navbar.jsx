@@ -1,10 +1,13 @@
 import React from "react";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
-import cartImage from "../../images/shopping-cart-outline-svgrepo-com.svg";
 import logoImage from "../../images/logo2.png";
 import userIco from "../../images/user-ico.png";
 import { HiUserCircle } from "react-icons/hi";
+import { FiShoppingCart } from "react-icons/fi";
+
+
+
 const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
@@ -21,17 +24,18 @@ const Navbar = () => {
       <nav className="nav-links">
         {token ? (
           <>
+            <HiUserCircle className="user-icon" />
             <button className="nav-button" onClick={handleClick}>
               Logout
             </button>
             <Link to="/products" className="nav-link">
               Products
             </Link>
-            <HiUserCircle className="user-icon" />
-            {/* <Link to="/profile" className='nav-link'>Profile</Link> */}
-            <Link to="/cart" className="nav-link">
-              <img src={cartImage} alt="Cart" className="cart-icon" />
-            </Link>
+            <Link to="/about" className='nav-link'>About</Link>
+             <Link to="/cart" className="nav-link">
+              
+            <FiShoppingCart className="cart-icon"/>
+            </Link> 
           </>
         ) : (
           <>
@@ -41,8 +45,11 @@ const Navbar = () => {
             <Link to="/products" className="nav-link">
               Products
             </Link>
+            <Link to="/about" className='nav-link'>About</Link>
+            <Link to="/contact" className='nav-link'>Contact</Link>
             <Link to="/cart" className="nav-link">
-              <img src={cartImage} alt="Cart" className="cart-icon" />
+            <FiShoppingCart className="cart-icon"/>
+             
             </Link>
           </>
         )}

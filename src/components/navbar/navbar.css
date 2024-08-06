@@ -46,6 +46,7 @@
 }
 .nav-button:hover{
     color: rgb(78, 121, 84);
+    background-color: transparent;
 }
 .nav-link:hover{
     color: rgb(78, 121, 84);
@@ -63,6 +64,9 @@
 .cart-icon {
     height: 39px;
     width: 60px;
+  }
+  .cart-icon:hover{
+    color: rgb(78, 121, 84);
   }
 .user-icon{
     
