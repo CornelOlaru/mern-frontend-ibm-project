@@ -102,6 +102,20 @@ const Dashboard = () => {
     <main>
       <Navbar />
       <div className="dashboard-content">
+      <section className="about-section">
+          <h2 className="about-title">Discover Our Story</h2>
+          <div className="about-content">
+            <div className="about-images">
+              <img src="/src/images/placeholder1.png" alt="Placeholder 1" className="about-image image1" />
+              <img src="/src/images/placeholder2.jpg" alt="Placeholder 2" className="about-image image2" />
+            </div>
+            <div className="about-text">
+              <p>Welcome to our world of homemade soaps and candles! Discover our passion for crafting eco-friendly, handmade products using only the finest natural ingredients.</p>
+              <Link to="/about" className="about-button">Learn More About Us</Link>
+            </div>
+          </div>
+        </section>
+        
         <section>
           <h2>Soaps</h2>
           <Slider {...sliderSettings}>
@@ -136,19 +150,7 @@ const Dashboard = () => {
           </Slider>
         </section>
 
-        <section className="about-section">
-          <h2 className="about-title">Discover Our Story</h2>
-          <div className="about-content">
-            <div className="about-images">
-              <img src="/src/images/placeholder1.png" alt="Placeholder 1" className="about-image image1" />
-              <img src="/src/images/placeholder2.jpg" alt="Placeholder 2" className="about-image image2" />
-            </div>
-            <div className="about-text">
-              <p>Welcome to our world of homemade soaps and candles! Discover our passion for crafting eco-friendly, handmade products using only the finest natural ingredients.</p>
-              <Link to="/about" className="about-button">Learn More About Us</Link>
-            </div>
-          </div>
-        </section>
+        
       </div>
       <Footer/>
     </main>
