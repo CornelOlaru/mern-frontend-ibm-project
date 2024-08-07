@@ -7,7 +7,7 @@ const About = () => {
   return (
     <div className="about-page">
       <Navbar />
-      <main className="about-container">
+      <main className="about-container spaced-container">
         <h1 className="about-title">A STORY OF FRESHNESS</h1>
         <div className="about-content">
           <div className="about-images">

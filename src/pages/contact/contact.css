@@ -1,71 +1,75 @@
 .contact-container {
-    display: flex;
-    justify-content: space-between;
-    padding: 50px;
-    background-color: #f9f9f9; /* culoare de fundal a paginii */
-  }
-  
-  .contact-info {
-    width: 40%;
-  }
-  
-  .contact-info p {
-    margin: 0 0 10px 0;
-  }
-  
-  .contact-info h2 {
-    margin: 20px 0;
-  }
-  
-  .contact-form {
-    width: 50%;
-  }
-  
-  .contact-form h1 {
-    margin-bottom: 20px;
-    color: #555; /* Culoarea textului */
-  }
-  
-  .contact-form form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  .form-group label {
-    margin-bottom: 5px;
-    color: #555; /* Culoarea textului etichetelor */
-  }
-  
-  .form-group input,
-  .form-group textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fff; /* Culoarea de fundal a câmpurilor */
-    color: #333; /* Culoarea textului în câmpuri */
-  }
-  
-  .form-group input::placeholder,
-  .form-group textarea::placeholder {
-    color: #999; /* Culoarea textului de tip placeholder */
-  }
-  
-  button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 15px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  padding: 50px;
+  /*background-color: #f9f9f9; /* culoare de fundal a paginii */
+  margin-top: 80px; 
+}
+
+.spaced-container {
+  margin-top: 80px; 
+}
+
+.contact-info {
+  width: 40%;
+}
+
+.contact-info p {
+  margin: 0 0 10px 0;
+}
+
+.contact-info h2 {
+  margin: 20px 0;
+}
+
+.contact-form {
+  width: 50%;
+}
+
+.contact-form h1 {
+  margin-bottom: 20px;
+  color: #555; /* Culoarea textului */
+}
+
+.contact-form form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  margin-bottom: 5px;
+  color: #555; /* Culoarea textului etichetelor */
+}
+
+.form-group input,
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff; /* Culoarea de fundal a campurilor */
+  color: #333; /* Culoarea textului în campuri */
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #999; /* Culoarea textului de tip placeholder */
+}
+
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #45a049;
+}

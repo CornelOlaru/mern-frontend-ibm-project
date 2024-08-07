@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <>
       <Navbar />
-      <div className="contact-container">
+      <div className="contact-container spaced-container">
         <div className="contact-info">
           <p>If you have questions or special inquiries, you're welcome to contact me or fill out this form</p>
           <h2>AROMIA</h2>
