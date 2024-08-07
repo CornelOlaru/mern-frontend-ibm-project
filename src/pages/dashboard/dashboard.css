@@ -20,7 +20,8 @@ h2 {
 }
 
 section {
-  margin-bottom: 20px; 
+ 
+  margin-bottom: 50px; 
 }
 
 .products-container {
@@ -29,19 +30,18 @@ section {
   align-items: center;
   flex-wrap: wrap;
 }
+
+
 .product-card {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 8px;
-  overflow: hidden;
-  margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-  width: 250px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%; 
+
+  padding: 10px;
+  margin: 0 5px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  max-width: 300px; 
+  
 }
 
 .product-card:hover {
@@ -72,33 +72,6 @@ section {
   color: #666;
 }
 
-.slick-slider {
-  margin: 0 10px; 
-}
-
-.slick-slide {
-  padding: 10px;
-}
-
-.slick-prev, .slick-next {
-  z-index: 1;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.slick-prev {
-  left: 10px;
-}
-
-.slick-next {
-  right: 10px;
-}
-
-.slick-prev:before, .slick-next:before {
-  font-size: 24px;
-  color: #333;
-}
-
 .contact-details {
   background-color: #f9f9f9;
   padding: 20px;
@@ -113,3 +86,87 @@ section {
   margin: 10px 0;
   color: #555;
 }
+
+.about-section {
+  margin: 7rem 6rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;  
+  background-color: #f9f9f9;
+  border-radius: 50px;
+}
+.about-container {
+  flex: 1;  
+  max-width: 120px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #3c6e47;
+}
+
+.about-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.about-images {
+  position: relative;
+  flex: 1;
+  margin-right: 10px;
+}
+
+.about-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  position: absolute;
+  max-width: 550px;
+  max-height: 500px;
+}
+
+.image1 {
+  z-index: 1;
+  left: 80px;  
+  top: 150px;    
+}
+
+.image2 {
+  z-index: 2;
+  right: 400px;
+  top: 120px;
+}
+
+
+.about-text {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 400px;
+}
+
+
+
+.about-button {
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #417556;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.about-button:hover {
+  background-color: #555;
+}
+

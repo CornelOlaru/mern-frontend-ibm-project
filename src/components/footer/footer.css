@@ -60,7 +60,7 @@ margin: 0 20%;
   font-size: 1rem;
 }
 .footer-button{
-    font-size: 1.2rem;
+  font-size: 1.2rem;
   width: 100%;
   margin: 0px auto;
   margin-bottom: 0;
@@ -68,10 +68,10 @@ margin: 0 20%;
   border: none;
   padding: 10px 0;
   /* background-color: rgba(203, 140, 255, 0.5); */
-  background-color: var(--purple);
+  background-color: #417556;
   cursor: pointer;
-  color: #000;
-  border: 1px solid var(--purple);
+  color: #e8e8e8;
+  border: 1px solid #555;
 }
 .footer-list li{
     font-size: 1rem;
