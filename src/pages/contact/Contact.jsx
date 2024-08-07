@@ -11,8 +11,8 @@ const Contact = () => {
         <div className="contact-info">
           <p>If you have questions or special inquiries, you're welcome to contact me or fill out this form</p>
           <h2>AROMIA</h2>
-          <p>Tel: 123-456-7890</p>
-          <p>Email: aromia@aromia.ro</p>
+          <p>Tel: +40770955987</p>
+          <p>Email: support@aromia.ro</p>
         </div>
         <div className="contact-form">
           <h1>LET'S TALK</h1>
