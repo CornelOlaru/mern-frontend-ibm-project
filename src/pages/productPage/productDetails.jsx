@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './productDetails.css';
+import Navbar from '../../components/navbar/Navbar';
+import {CartContext} from '../../context/cartContext';
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
+  const { addToCart } = useContext(CartContext); 
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -53,7 +56,14 @@ const ProductDetails = () => {
     category = 'No Category',
   } = product;
 
+  const handleAddToCart = () => {
+    const quantity = parseInt(document.getElementById('quantity').value);
+    addToCart(product, quantity);
+  };
+
   return (
+    <main>
+    <Navbar />
     <div className="product-page">
       <div className="product-details">
         <img src={imageUrl.url} alt={imageUrl.filename} className="product-image" />
@@ -64,8 +74,8 @@ const ProductDetails = () => {
             <label htmlFor="quantity">Quantity</label>
             <input type="number" id="quantity" name="quantity" min="1" defaultValue="1" />
           </div>
-          <button className="button add-to-cart">Add to Cart</button>
-          <button className="button buy-now">Buy Now</button>
+          <button className="button add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+        
           <p className="product-category">Category: {category}</p>
           <p className="product-description">{description}</p>
         </div>
@@ -85,13 +95,15 @@ const ProductDetails = () => {
                 <label htmlFor={`quantity-${relatedProduct._id}`}>Quantity</label>
                 <input type="number" id={`quantity-${relatedProduct._id}`} name={`quantity-${relatedProduct._id}`} min="1" defaultValue="1" />
               </div>
-              <button className="button add-to-cart">Add to Cart</button>
+              <button className="button add-to-cart" onClick={() => addToCart(relatedProduct, parseInt(document.getElementById(`quantity-${relatedProduct._id}`).value))}>Add to Cart</button>
             </div>
           ))}
         </div>
       </div>
     </div>
+    </main>
   );
 };
 
 export default ProductDetails;
+

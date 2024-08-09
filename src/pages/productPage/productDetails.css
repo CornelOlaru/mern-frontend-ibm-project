@@ -1,4 +1,7 @@
-
+.product-page{
+  margin-top: 110px;
+  margin-bottom: 60px;
+}
 .product-details {
   display: flex;
   justify-content: space-between;
@@ -97,7 +100,7 @@
 }
 
 .related-products {
-  margin-top: 2rem;
+  margin-top: 5rem;
 }
 
 .related-products h2 {

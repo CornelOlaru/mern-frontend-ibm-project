@@ -11,6 +11,7 @@ import About from "./pages/about/About";
 import Contact from "./pages/contact/Contact"
 import Cart from "./pages/cart/Cart";
 import Help from "./pages/help/Help";
+import { CartProvider } from "./context/cartContext";
 
 const router = createBrowserRouter([
   {
@@ -51,8 +52,11 @@ const router = createBrowserRouter([
   }
 ]);
 
+
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider> {/* Wrap the RouterProvider with CartProvider */}
+      <RouterProvider router={router} />
+    </CartProvider>
   </React.StrictMode>
 );
