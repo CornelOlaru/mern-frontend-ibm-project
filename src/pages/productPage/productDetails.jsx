@@ -85,7 +85,6 @@ const ProductDetails = () => {
       <p className="product-description">{description}</p>
       <p className="product-price">Price: {price}</p>
       <p className="product-category">Category: {category}</p>
-      <p className="product-stock">Stock: {stock}</p>
     </div>
   </div>
 );
