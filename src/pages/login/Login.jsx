@@ -35,31 +35,52 @@ const Login = () => {
         },
         body: JSON.stringify(formData),
       });
+      // const result = await response.json();
       const result = await response.json();
+      const statusResponse = response.status;
+      if (response.status === 401) {
+        // Handle unauthorized access
+        setErrorMessage("Unauthorized: Invalid credentials")
+        console.error("Unauthorized: Invalid credentials");
+        // Display error message to the user
+      } else {
+        localStorage.setItem("token", result.token);
+        navigate("/dashboard"); // Navigate to the dashboard after successful login
+      }
       localStorage.setItem("token", result.token);
       if (!result.token) {
         localStorage.clear("token", result.token);
-        navigate("/");
+        navigate("/login");
       }
       localStorage.getItem("token", result.token);
       const decoded = jwtDecode(result.token);
       console.log(decoded);
       console.log(result);
-      if (!result.token) {
-      }
+      // if (!result.token) {
+
+      // }
       if (decoded.role == "admin" && response.ok) {
         navigate("/admin");
       } else if (decoded.role == "distributor" && response.ok) {
         navigate("/distributor");
       } else if (decoded.role == "customer" && response.ok) {
         navigate("/");
-        return result;
       } else {
         setErrorMessage(result.message || "Login failed. Please try again.");
+        console.error("Data format is not as expected:", result);
+        // return result;
       }
     } catch (error) {
-      console.log(error.message);
-      setErrorMessage(error.message);
+      // console.log(error.message);
+      if (statusResponse === 401) {
+        setErrorMessage("Unauthorized: Invalid credentials")
+        
+      } else {
+
+        setErrorMessage(error.message || "Login failed. Please try again.");
+      }
+
+      // setErrorMessage(error.message);
     } finally {
       setFormData({
         name: "",
@@ -115,7 +136,7 @@ const Login = () => {
                 </span>
               </div>
             </div>
-            <button className="form-button" type="submit">
+            <button className="form-button-login" type="submit">
               Login
             </button>
             <Link className="register-link" to="/register">

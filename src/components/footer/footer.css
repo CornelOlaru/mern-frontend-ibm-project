@@ -39,7 +39,7 @@ margin: 0 20%;
     color: var(--black);
 }
 .footer-routes:hover{
-    color: var(--purple);
+    color: var(--green);
 }
 .footer-links{
     display: flex;
@@ -68,10 +68,10 @@ margin: 0 20%;
   border: none;
   padding: 10px 0;
   /* background-color: rgba(203, 140, 255, 0.5); */
-  background-color: var(--purple);
+  background-color: var(--green);
   cursor: pointer;
-  color: #000;
-  border: 1px solid var(--purple);
+  color: var(--white);
+  /* border: 1px solid var(--green); */
 }
 .footer-list li{
     font-size: 1rem;

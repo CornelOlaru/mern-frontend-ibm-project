@@ -1,38 +1,37 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../../components/navbar/Navbar";
-import Aside from "../../components/aside/Aside";
-import Statistics from "../../components/statistics/Statistics";
-import Users from "../../components/all users/Users";
-import Orders from "../../components/orders/Orders";
-import "./distributor.css";
-import { Link } from "react-router-dom";
-import { MdDeleteForever, MdOutlineOpenInNew } from "react-icons/md";
-import { FaRegEdit } from "react-icons/fa";
+import React, { useEffect, useState } from 'react';
+import './orders.css';
+import { Link, useNavigate } from 'react-router-dom';
+import { MdDeleteForever, MdOutlineOpenInNew } from 'react-icons/md';
+import { FaRegEdit } from 'react-icons/fa';
 
-const Distributor = () => {
-  const [products, setProducts] = useState([]);
-  const token = localStorage.getItem("token");
+const Orders = () => {
+  const [orders, setOrders] = useState([]);
+  const token = localStorage.getItem('token');
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    const fetchOrdersData = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/products", {
+        const response = await fetch('http://localhost:3001/api/orders', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
         const result = await response.json();
-        setProducts(result);
+        setOrders(result); // Set the fetched orders to state
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
-    fetchProducts();
-  }, [token]);
 
+    if (token) {
+      fetchOrdersData();
+    } else {
+      navigate('/login');
+    }
+  }, [token, navigate]);
 
-
-  const deleteProduct = async (e, _id) => {
+  const deleteOrder = async (e, _id) => {
     e.preventDefault();
     const thisClicked = e.currentTarget;
 
@@ -51,7 +50,7 @@ const Distributor = () => {
         return;
       }
 
-      const deleteResponse = await fetch(`http://localhost:3001/api/products/${_id}`, {
+      const deleteResponse = await fetch(`http://localhost:3001/api/orders/${_id}`, {
         method: "DELETE",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -64,7 +63,7 @@ const Distributor = () => {
 
       console.log("Product deleted successfully.");
 
-      const response = await fetch("http://localhost:3001/api/products", {
+      const response = await fetch("http://localhost:3001/api/orders", {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -80,7 +79,7 @@ const Distributor = () => {
 
     
 
-        setProducts(data);
+        setOrders(data);
       
     } catch (error) {
       console.error("Error fetching or parsing data:", error);
@@ -88,36 +87,33 @@ const Distributor = () => {
 
     thisClicked.innerText = "Delete";
   }
+
   return (
-    <main className="admin-container">
-      <Navbar />
-      <Aside />
-      <div className="distributor-dashboard">
-        <table className="product-table">
+    <div className="orders-container">
+      {orders.length > 0 ? (
+        <table className="orders-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Category</th>
-              <th>Actions</th>
+              <th>Total Order Price</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
-            {products.map((product) => (
-              <tr key={product._id}>
-                <td>{product.name}</td>
-                <td>{product.price}</td>
-                <td> {product.stock}</td>
-                <td> {product.category}</td>
+            {orders.map((order) => (
+              <tr key={order._id}>
+                <td>{order?.totalPrice}</td>
+                <td>{order?.orderDate}</td>
+                <td>{order?.status}</td>
                 <td>
                   <Link className="action-icon">
                     <MdOutlineOpenInNew title="View" />
                   </Link>
-                  <Link  className="action-icon">
+                  <Link className="action-icon">
                     <FaRegEdit title="Edit" />
                   </Link>
-                  <button onClick={(e) => deleteProduct(e, product._id)} className="action-icon">
+                  <button onClick={(e) => deleteOrder(e, order._id)} className="action-icon">
                     <MdDeleteForever title="Delete" />
                   </button>
                 </td>
@@ -125,9 +121,11 @@ const Distributor = () => {
             ))}
           </tbody>
         </table>
-      </div>
-    </main>
+      ) : (
+        <p>No orders found</p>
+      )}
+    </div>
   );
 };
 
-export default Distributor;
+export default Orders;

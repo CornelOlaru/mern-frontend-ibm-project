@@ -1,0 +1,26 @@
+.dropdown-btn{
+    min-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    width: fit-content;
+    padding: 1rem 0;
+    background-color: transparent;
+    /* border-radius: 0.5rem; */
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    padding-top: 0;
+}
+
+.toggle-icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: .1rem;
+}
+
+.button-open{
+    /* border: 1px solid black; */
+    transition: all .5s ease-in-out;
+    border-bottom: 1px solid black;
+}

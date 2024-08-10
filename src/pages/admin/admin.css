@@ -1,0 +1,23 @@
+
+.admin-container{
+    /* background-color: #EAEAEA; */
+    /* margin-top: 5%; */
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+    flex-shrink: 1;
+}
+.admin-dashboard{
+    width: 100%;
+    margin:0 1%;
+    margin-top: 70px;
+    margin-left: 11%;
+    
+}
+.admin-title{
+    font-size: 2rem;
+    padding:0 10px;
+    padding-top: 60px; /* Adjust this value based on your navbar's height */
+  margin-top: -60px; /* Adjust this value to compensate for the padding */
+}
+

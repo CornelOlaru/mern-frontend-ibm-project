@@ -1,27 +1,8 @@
-.distributor-container{
-    /* background-color: #EAEAEA; */
-    /* margin-top: 5%; */
+.users-container{
     
-    width: 100%;
-  margin-top: 0;
-    
-
+    padding: 0 10px;
 }
-.distributor-dashboard{
-    width: 100%;
-    margin:0 1%;
-    margin-top: 70px;
-    margin-left: 11%;
-}
-.distributor-title{
-    font-size: 2rem;
-    padding:0 10px;
-    padding-top: 60px; /* Adjust this value based on your navbar's height */
-  margin-top: -60px; /* Adjust this value to compensate for the padding */
-}
-
-
-.product-table{
+.users-table{
     width: 100%;
 }
 table{
@@ -78,14 +59,10 @@ tr img{
     flex-direction: row;
     font-size: 1.5rem;
     color: var(--green);
-    background-color: transparent;
-    
     /* margin-left: 0px; */
-    padding: 0;
 }
 .action-icon:nth-child(3):hover{
     color: red;
-    background-color: transparent;
 }
 .action-icon:nth-child(2):hover{
     color: green;

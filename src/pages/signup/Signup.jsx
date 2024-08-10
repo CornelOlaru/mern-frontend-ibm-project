@@ -23,6 +23,9 @@ const Signup = () => {
   const [validEmail, setvalidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
   const [validConfirmedPass, setValidConfirmedPass] = useState(false);
+  const [validConfirmedPassFocus, setValidConfirmedPassFocus] = useState(false);
+  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
+
   const [errorMessage, setErrorMessage] = useState("");
 
 
@@ -48,7 +51,14 @@ const Signup = () => {
   useEffect(() => {
     setvalidEmail(EMAIL_REGEX.test(formData.email));
   }, [formData.email]);
-
+  useEffect(() => {
+    // Check if passwords match
+    if (validPwd && confirmPassword) {
+      setIsPasswordMatch(validPwd === confirmPassword);
+    } else {
+      setIsPasswordMatch(false);
+    }
+  }, [validPwd, confirmPassword]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -62,9 +72,10 @@ const Signup = () => {
       });
       const result = await response.json();
       console.log(result);
+     
       if (response.ok) {
         alert("Account created succesfully!")
-        navigate("/login");
+        navigate("/");
         return result;
       } else {
         setErrorMessage(result.message || "Registration failed. Please try again.");
@@ -110,6 +121,7 @@ const Signup = () => {
                 placeholder="Name"
                 value={formData.name}
                 onChange={handleInputChange}
+                required
               />
             </div>
             <div className="form-row">
@@ -188,7 +200,9 @@ const Signup = () => {
                   type={showRetypedPassword ? "password" : "text"}
                   placeholder="Password"
                   value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  onChange={(e)=> {setConfirmPassword(e.target.value)}}
+                  onFocus={() => setValidConfirmedPassFocus(true)}
+                onBlur={() => setValidConfirmedPassFocus(false)}
                   required
                 />
                 <span className="" onClick={showRetypedPasswordFunction}>
@@ -196,9 +210,25 @@ const Signup = () => {
                 </span>
               </div>
             </div>
-            <button className="form-button" type="submit">
+            <p
+              id="confpwdnote"
+              className={validConfirmedPassFocus && !validConfirmedPass ? "instructions" : "offscreen"}
+            >
+              <FaInfoCircle
+                style={{ marginRight: "5px" }}
+                
+              />
+              Passwords do not match!
+             
+            </p>
+            { isPasswordMatch ? <button className="form-button" type="submit">
               Sign up
-            </button>
+            </button> : 
+            <button className="form-button-disabled"  type="submit" disabled>
+            Sign up
+          </button>
+          }
+
             <Link className="login-link" to="/login">
               Already have an account?
             </Link>

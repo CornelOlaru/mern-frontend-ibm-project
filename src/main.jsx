@@ -12,6 +12,7 @@ import Contact from "./pages/contact/Contact"
 import Admin from "./pages/admin/Admin";
 import Distributor from "./pages/distributor/Distributor";
 import ProtectedRoutes from "./components/protectedRoute/ProtectedRoutes";
+import MyProfile from "./pages/admin/subpages/MyProfile";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
     element: <Contact/>,
   },
   {
+    path: "my-profile",
+    element: <MyProfile/>,
+  },
+  {
     element: <ProtectedRoutes roles={["admin"]} />,
     children: [
       {
@@ -60,6 +65,34 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    element: <ProtectedRoutes roles={["admin"]} />,
+    children: [
+      {
+        path: "admin/users",
+        element: <Admin />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedRoutes roles={["admin"]} />,
+    children: [
+      {
+        path: "admin/orders",
+        element: <Admin />,
+      },
+    ],
+  },
+  {
+    element: <ProtectedRoutes roles={["admin"]} />,
+    children: [
+      {
+        path: "admin/stats",
+        element: <Admin />,
+      },
+    ],
+  },
+ 
 ]);
 
 createRoot(document.getElementById("root")).render(
