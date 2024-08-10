@@ -16,51 +16,52 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './products.css';
+import Navbar from '../../components/navbar/Navbar';
 
-const ProductDetails = () => {
+const Products = () => {
   const { productId } = useParams();
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const token = localStorage.getItem("token");
-
+  // const { productId } = useParams();
+  // console.log(productId); 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/products/${productId}`);
+        const response = await fetch(`http://localhost:3001/api/products/`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        console.log(response)
         if (!response.ok) {
           console.error(`Error: ${response.status} ${response.statusText}`);
           throw new Error(`Network response was not ok: ${response.status}`);
+         
         }
         const data = await response.json();
+        // console.log(data)
         setProduct(data);
       } catch (error) {
         console.error('Error fetching the product details', error);
       }
     };
 
-    const fetchRelatedProducts = async () => {
-      try {
-        const response = await fetch(`http://localhost:3001/api/products`);
-        if (!response.ok) {
-          console.error(`Error: ${response.status} ${response.statusText}`);
-          throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        const data = await response.json();
-        setRelatedProducts(data.filter(p => p._id !== productId).slice(0, 4));
-      } catch (error) {
-        console.error('Error fetching the related products', error);
-      }
-    };
+    
 
     fetchProduct();
-    fetchRelatedProducts();
+    // if (token) {
+    // } else {
+    //   navigate("/login");
+    // }
+   
   }, [productId]);
-
-  if (!product || Object.keys(product).length === 0) {
-    return <div>Loading...</div>;
-  }
-
-  const {
+      
+      if (!product || Object.keys(product).length === 0) {
+        return <div>Loading...</div>;
+      }
+      
+      const {
     imageUrl = { url: '', filename: '' },
     name = 'No Name',
     description = 'No Description',
@@ -71,27 +72,12 @@ const ProductDetails = () => {
 
   return (
     <div className="product-page">
-      <div className="product-details">
-        <img src={imageUrl.url} alt={imageUrl.filename} className="product-image" />
-        <div className="product-info">
-          <h1 className="product-name">{name}</h1>
-          <p className="product-sku">SKU: {sku}</p>
-          <p className="product-price">${price}</p>
-          <div className="quantity">
-            <label htmlFor="quantity">Quantity</label>
-            <input type="number" id="quantity" name="quantity" min="1" defaultValue="1" />
-          </div>
-          <button className="button add-to-cart">Add to Cart</button>
-          <button className="button buy-now">Buy Now</button>
-          <p className="product-category">Category: {category}</p>
-          <p className="product-description">{description}</p>
-        </div>
-      </div>
-
+    
+<Navbar/>
       <div className="related-products">
-        <h2>Related Products</h2>
+        <h2>All Products</h2>
         <div className="related-products-grid">
-          {relatedProducts.map((relatedProduct) => (
+          {product.map((relatedProduct) => (
             <div key={relatedProduct._id} className="related-product-card">
               <Link to={`/product/${relatedProduct._id}`}>
                 <img src={relatedProduct.imageUrl.url} alt={relatedProduct.imageUrl.filename} className="related-product-image" />
@@ -111,4 +97,4 @@ const ProductDetails = () => {
   );
 };
 
-export default ProductDetails;
+export default Products;

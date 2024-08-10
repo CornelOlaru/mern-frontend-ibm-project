@@ -1,9 +1,18 @@
+.contact-page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .contact-container {
   display: flex;
-  justify-content: space-between;
-  padding: 50px;
-  /*background-color: #f9f9f9; /* culoare de fundal a paginii */
-  margin-top: 80px; 
+  align-items: first baseline;
+  flex: 1;  
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 80px;
 }
 
 .spaced-container {
