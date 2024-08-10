@@ -10,7 +10,7 @@ const Footer = () => {
 
             <h3 className='footer-title'>Aromia</h3>
             <ul className='footer-routes'>
-                <Link>Shop all</Link>
+                <Link to="/">Shop all</Link>
                 <Link>For Body</Link>
                 <Link>For Home</Link>
                 <Link to="/about">About</Link>
@@ -21,9 +21,9 @@ const Footer = () => {
 
             <h3 className='footer-title'>Help</h3>
             <ul className='footer-links'> 
-                <a href='#'>Store policy</a>
-                <a href='#'>Payment methods</a>
-                <a href='#'>FAQ</a>
+            <Link to="/help#store-policy">Store policy</Link>
+            <Link to="/help#payment-methods">Payment methods</Link>
+            <Link to="/help#faq">FAQ</Link>
                 
                 
             </ul>

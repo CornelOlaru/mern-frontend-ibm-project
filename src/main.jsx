@@ -13,6 +13,9 @@ import Admin from "./pages/admin/Admin";
 import Distributor from "./pages/distributor/Distributor";
 import ProtectedRoutes from "./components/protectedRoute/ProtectedRoutes";
 import MyProfile from "./pages/admin/subpages/MyProfile";
+import Cart from "./pages/cart/Cart";
+import Help from "./pages/help/Help";
+import { CartProvider } from "./context/cartContext";
 
 const router = createBrowserRouter([
   {
@@ -93,10 +96,22 @@ const router = createBrowserRouter([
     ],
   },
  
+  
+  {
+    path: "cart",
+    element: <Cart/>,
+  },
+  {
+    path: "help",
+    element: <Help/>,
+  }
 ]);
+
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider> {/* Wrap the RouterProvider with CartProvider */}
+      <RouterProvider router={router} />
+    </CartProvider>
   </React.StrictMode>
 );
