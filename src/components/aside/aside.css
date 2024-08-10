@@ -1,0 +1,108 @@
+.side-component{
+    /* height: 100vh; */
+    min-width: 10%;
+    max-width: fit-content;
+    background-image: 
+    linear-gradient(
+      rgba(162, 159, 159, 0.5),  
+      rgba(112, 108, 108, 0.5)  
+    ), 
+    url('');
+    background-size: cover; 
+    background-position: center;
+    position: fixed;
+    height: 100%;
+    
+}
+/* Dropdown content (hidden by default) */
+.side-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+  .side-dropdown-content .nav-dropdown-button{
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+  }
+
+.side-list{
+    list-style-type: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    /* padding: 20px; */
+    padding-left: 0;
+    padding-top: 0;
+    margin: 0;
+}
+.side-list-element{
+    /* margin: 20px 0; */
+    width: 100%;
+    color: var(--black);
+    height:100px;
+    display: flex;
+    justify-content: flex-start;
+    /* padding-left: 50px; */
+    align-items: center;
+    text-decoration: none;
+    flex: 1;
+    text-align: left !important;
+    border-bottom: 1px solid var(--black);
+    
+}
+.side-list-element:hover{
+     background-image: 
+    linear-gradient(
+      rgba(162, 159, 159, 0.5),  
+      rgba(44, 43, 43, 0.5)  
+    ), 
+    url('');
+    background-size: cover; 
+    background-position: center;
+    text-decoration: underline;
+    
+}
+.admin-icon{
+    margin: 0 5px;
+}
+.side-list-element:focus{
+    background-image: 
+    linear-gradient(
+      rgba(162, 159, 159, 0.5),  
+      rgba(44, 43, 43, 0.5)  
+    ), 
+    url('');
+    background-size: cover; 
+    background-position: center;
+    text-decoration: underline;
+}
+.side-user{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    
+   margin: 0 auto;
+    text-align: center;
+}
+
+.side-dropdown-content.show {
+    display: block;
+  }
+  
+  .content{
+    /* border-bottom: 1px solid black; */
+  }
+  .side-dropdown-button{
+    text-decoration: none;
+    color: var(--black);
+}
+
+.dropdown-elements{
+    width: 100%;
+  }

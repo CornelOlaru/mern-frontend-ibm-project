@@ -16,7 +16,7 @@
       bottom: 0;
       left: 0;
       background-image:url("D:\IBM Summer Practice\mern-frontend-ecommerce-project\src\assets\backround-about.jpg");
-      background-size: cover;
+      background-size:cover;
       background-position: center;
       
       /* opacity: 0.35; */
@@ -36,12 +36,13 @@
     /* width: 90%; */
     /* height: 45vh; */
     max-width: 400px; /* Maximum width for larger screens */
-    border: 5px solid var(--purple);
+    border: 5px solid var(--green);
     padding: 20px;
     border-radius: 10px;
     background-color: var(--light-gray);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     z-index: 1;
+    ;
 }
 
 /* Title of the form */
@@ -88,7 +89,7 @@ input:focus::placeholder{
   place-content: "";
 }
 
-.form-button{
+.form-button-login{
   font-size: 1.2rem;
   width: 75%;
   margin: 20px auto;
@@ -97,13 +98,13 @@ input:focus::placeholder{
   border: none;
   padding: 10px 0;
   /* background-color: rgba(203, 140, 255, 0.5); */
-  background-color: var(--purple);
+  background-color: var(--green);
   cursor: pointer;
-  color: #000;
-  border: 1px solid var(--purple);
+  color: var(--white);
+  border: 1px solid var(--green);
 }
-.form-button:hover{
-  background-color: var(--dark-purple);
+.form-button-login:hover{
+  color: var(--white);
 }
 .register-link{
   color: #000;

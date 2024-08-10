@@ -4,7 +4,7 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(118, 61, 61, 0.87);
+  color: var(--black);
   background-color: #f6f6ec;
 
   font-synthesis: none;
@@ -19,15 +19,20 @@
   --transparent: transparent;
   --dark-purple: rgba(188, 111, 252, 0.5);
   --gray:rgba(200, 200, 200, 0.9);
+  --green:rgb(78, 121, 84);
 }
 
-body {
+html, body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }
-
+body{
+  scroll-padding-top: 70px;
+  padding-top: 60px;
+}
 .error-message{
   width: 70%;
   margin: 0 auto;
@@ -35,4 +40,7 @@ body {
   color: red;
   font-size: 1rem;
   /* margin-left: 15%; */
+}
+.m-5{
+  margin-right: 20px;
 }
