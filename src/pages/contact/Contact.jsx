@@ -5,7 +5,7 @@ import './contact.css';
 
 const Contact = () => {
   return (
-    <>
+    <div className='contact-page'>
       <Navbar />
       <div className="contact-container spaced-container">
         <div className="contact-info">
@@ -35,8 +35,11 @@ const Contact = () => {
           </form>
         </div>
       </div>
+      <div className='contact-footer'> 
+
       <Footer />
-    </>
+      </div>
+    </div>
   );
 };
 
