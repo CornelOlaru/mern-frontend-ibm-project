@@ -104,10 +104,10 @@ const Orders = () => {
             {orders.map((order) => (
               <tr key={order._id}>
                 <td>{order?.totalPrice}</td>
-                <td>{order?.orderDate}</td>
+                <td>{new Date(order?.orderDate).toLocaleString()}</td>
                 <td>{order?.status}</td>
                 <td>
-                  <Link className="action-icon">
+                  <Link to={`/orders/${order._id}`} className="action-icon">
                     <MdOutlineOpenInNew title="View" />
                   </Link>
                   <Link className="action-icon">

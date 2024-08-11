@@ -111,10 +111,10 @@ const Users = () => {
                 <td>{user.role}</td>
 
                 <td>
-                  <Link className="action-icon">
+                  <Link to={`/users/${user._id}`} className="action-icon">
                     <MdOutlineOpenInNew  title="View"/>
                   </Link>
-                  <Link className="action-icon">
+                  <Link to={`/users/${user._id}`} className="action-icon">
                     <FaRegEdit  title="Edit"/>
                   </Link>
                   <button onClick={(e) => deleteUser(e, user._id)} className="action-icon">

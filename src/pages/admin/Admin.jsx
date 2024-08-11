@@ -8,10 +8,54 @@ import Statistics from "../../components/statistics/Statistics";
 import MyProfile from "./subpages/MyProfile";
 import Users from "../../components/all users/Users";
 import Orders from "../../components/orders/Orders";
+import Form from "../../components/Form";
+import FormModal from "../../components/FormModal";
 
 const Admin = () => {
- 
+  const [showModal, setShowModal] = useState(false);
 
+  const handleClose = () => setShowModal(false);
+  const handleShow = () => setShowModal(true);
+
+  const handleCreate = async (formData, e) => {
+    console.log("Form Data Submitted:", formData);
+    // Add logic to handle form submission
+    // e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:3001/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+      const result = await response.json();
+      console.log(result);
+     
+      if (response.ok) {
+        alert("Account created succesfully!")
+        // navigate("/");
+        return result;
+      } else {
+        setErrorMessage(result.message || "Registration failed. Please try again.");
+
+      }
+    } catch (error) {
+      console.log(error.message);
+      setErrorMessage(error.message);
+
+    } finally {
+    
+    handleClose();
+    }
+  };
+
+  const formFields = [
+    { name: "name", label: "User Name", type: "text" },
+    { name: "email", label: "User Email", type: "email" },
+    { name: "password", label: "User Password", type: "password" },
+    { name: "role", label: " User Role", type: "text" },
+  ];
   return (
     <main className="admin-container">
     <Navbar />
@@ -20,6 +64,16 @@ const Admin = () => {
       <h3  id="general" className="admin-title" >
         General
       </h3>
+      <button variant="primary" onClick={handleShow}>Create User</button>
+      <div className="">
+
+      <FormModal 
+      show={showModal}
+      handleCreate={handleCreate}
+      handleClose={handleClose}
+      formFields={formFields}
+      />
+      </div>
       <Statistics/>
       <h3 id="users" className="admin-title" >
         Users
