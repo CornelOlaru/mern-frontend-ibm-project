@@ -1,4 +1,5 @@
 import React from "react";
+
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
@@ -16,6 +17,8 @@ import MyProfile from "./pages/admin/subpages/MyProfile";
 import Cart from "./pages/cart/Cart";
 import Help from "./pages/help/Help";
 import { CartProvider } from "./context/cartContext";
+import UserId from "./pages/admin/subpages/UserId page/UserId";
+import OrderID from "./pages/admin/subpages/OrderId page/OrderID";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,14 @@ const router = createBrowserRouter([
   {
     path: "product/:productId", 
     element: <ProductDetails />,
+  },
+  {
+    path: "users/:userId", 
+    element: <UserId />,
+  },
+  {
+    path: "orders/:orderId", 
+    element: <OrderID />,
   },
   {
     path: "about",
