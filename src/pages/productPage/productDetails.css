@@ -1,7 +1,4 @@
-.product-page{
-  margin-top: 110px;
-  margin-bottom: 60px;
-}
+
 .product-details {
   display: flex;
   justify-content: space-between;
@@ -32,7 +29,7 @@
 
 
 .product-name {
-  font-size: 4rem;
+  font-size: 2rem;
   font-weight: bold;
   margin: 0.5rem 0;
   color: #333;
@@ -87,6 +84,7 @@
   background-color: #333;
 }
 
+
 .product-description {
   font-size: 1.2rem;
   color: #555;
@@ -100,7 +98,10 @@
 }
 
 .related-products {
-  margin-top: 5rem;
+  margin-top: 50px;
+  margin-left: 30px;
+  margin-right: 30px;
+  margin-bottom: 90px;
 }
 
 .related-products h2 {
@@ -108,6 +109,7 @@
   color: #333;
   margin-bottom: 1rem;
 }
+
 .related-products-grid {
   display: flex;
   justify-content: space-between;
@@ -116,11 +118,11 @@
 
 .related-product-card {
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 5px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 1rem;
   width: 100%;
-  max-width: 250px;
+  max-width: 220px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -174,69 +176,35 @@
   .quantity {
     justify-content: center;
   }
-}
 
-
-.products-details {
-    display: flex;
+  .related-products-grid {
     flex-direction: column;
     align-items: center;
-    padding: 20px;
-    max-width: 800px;
-    margin: 0 auto;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
   }
-  
-  /* Style for product image */
-  .products-image {
-    width: 100%;
-    max-width: 400px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    object-fit: cover;
+
+  .related-product-card {
+    max-width: 100%;
   }
-  
-  /* Container for product information */
-  .products-info {
+}
+
+/* Additional styling for layout and responsive design */
+@media (max-width: 768px) {
+  .product-details {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .product-image {
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .product-info {
+    max-width: 100%;
     text-align: center;
-    color: #333;
   }
-  
-  /* Style for product name */
-  .products-name {
-    font-size: 2em;
-    margin: 0;
-    color: #444;
+
+  .quantity {
+    justify-content: center;
   }
-  
-  /* Style for product description */
-  .products-description {
-    font-size: 1.2em;
-    margin: 10px 0;
-    color: #417556;
-  }
-  
-  /* Style for product price */
-  .products-price {
-    font-size: 1.5em;
-    margin: 10px 0;
-    color: #27ae60;
-  }
-  
-  /* Style for product category */
-  .products-category {
-    font-size: 1.2em;
-    margin: 5px 0;
-    color: #888;
-  }
-  
-  /* Style for product stock */
-  .products-stock {
-    font-size: 1.2em;
-    margin: 5px 0;
-    color: #e74c3c;
-  }
-  
+}
