@@ -39,7 +39,7 @@ const Footer = () => {
             <div className='footer-subscribe'>
                 <h3 className='footer-title'>Newsletter</h3>
                 <label>Enter Email*</label>
-                <input className='footer-input' type="email" name="email" id="email" placeholder='Email'/>
+                <input className='footer-input' type="email" name="email" id="subscribe-email" placeholder='Email'/>
                 <button className='footer-button' type="submit">SUBSCRIBE</button>
             </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
@@ -45,7 +46,7 @@ const Cart = () => {
     if (!isFormValid) return;
 
     const orderDetails = {
-      user: 'userId', // Replace with actual user ID from auth context or state
+      user: 'userId', // trebuie luat din auth context or state
       items: cart.map(item => ({
         product: item._id,
         quantity: item.quantity,
@@ -70,7 +71,7 @@ const Cart = () => {
       .then((data) => {
         console.log(data.message);
         alert('Order placed!'); // Show notification
-        setCart([]); // Clear the cart
+        setCart([]); 
         setCheckout(false);
         navigate('/orders');
       });

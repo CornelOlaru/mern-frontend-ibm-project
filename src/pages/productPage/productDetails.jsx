@@ -1,14 +1,15 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import './productDetails.css';
 import Navbar from '../../components/navbar/Navbar';
-import {CartContext} from '../../context/cartContext';
+import Footer from "../../components/footer/Footer";
+import { useParams, Link } from 'react-router-dom';
+import { CartContext } from '../../context/cartContext'; 
+import './productDetails.css';
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
-  const { addToCart } = useContext(CartContext); 
+  const { addToCart } = useContext(CartContext);
   const token = localStorage.getItem("token");
 
   useEffect(() => {
@@ -75,7 +76,6 @@ const ProductDetails = () => {
             <input type="number" id="quantity" name="quantity" min="1" defaultValue="1" />
           </div>
           <button className="button add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
-        
           <p className="product-category">Category: {category}</p>
           <p className="product-description">{description}</p>
         </div>
@@ -101,9 +101,9 @@ const ProductDetails = () => {
         </div>
       </div>
     </div>
+    < Footer />
     </main>
   );
 };
 
 export default ProductDetails;
-
