@@ -114,7 +114,7 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CartProvider> {/* Wrap the RouterProvider with CartProvider */}
+    <CartProvider> {}
       <RouterProvider router={router} />
     </CartProvider>
   </React.StrictMode>

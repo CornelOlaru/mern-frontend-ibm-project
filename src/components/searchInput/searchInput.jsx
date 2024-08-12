@@ -1,32 +1,29 @@
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import './searchInput.css'; 
 
-const SearchInput = () => {
+const SearchBar = ({ onSearch }) => {
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
 
-  const handleSearch = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (query.trim()) {
-      navigate(`/search?query=${query}`);
-    }
+    onSearch(query);
   };
 
   return (
-    <form className="search-form" onSubmit={handleSearch}>
+    <form onSubmit={handleSubmit} className="search-bar">
       <input
         type="text"
-        className="search-input"
-        placeholder="Search products..."
+        placeholder="Search within this category"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        className="search-input"
       />
       <button type="submit" className="search-button">
-        Search
+        <i className="fa fa-search"></i> {}
       </button>
     </form>
   );
 };
 
-export default SearchInput;
+export default SearchBar;
