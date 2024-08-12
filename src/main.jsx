@@ -19,6 +19,7 @@ import Help from "./pages/help/Help";
 import { CartProvider } from "./context/cartContext";
 import UserId from "./pages/admin/subpages/UserId page/UserId";
 import OrderID from "./pages/admin/subpages/OrderId page/OrderID";
+import ProductId from "./pages/distributor/subpages/ProductId";
 
 const router = createBrowserRouter([
   {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
   {
     path: "product/:productId", 
     element: <ProductDetails />,
+  },
+  {
+    path: "products/:productId", 
+    element: <ProductId />,
   },
   {
     path: "users/:userId", 

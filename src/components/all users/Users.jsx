@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./users.css";
 import { MdDeleteForever, MdOutlineOpenInNew } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
+import { Bar } from "react-chartjs-2";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -128,6 +129,7 @@ const Users = () => {
       ) : (
         <p>No users found</p>
       )}
+      
     </div>
   );
 };

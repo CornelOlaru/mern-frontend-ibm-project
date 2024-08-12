@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const OrderID = () => {
   const { orderId } = useParams();
   const token = localStorage.getItem("token");
   const [order, setOrder] = useState(null);
   const [form, setForm] = useState(false);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     status: "",
   });
@@ -64,6 +65,7 @@ const OrderID = () => {
         const updatedOrder = await response.json();
         setOrder(updatedOrder);
         setForm(false);
+        navigate("/admin");
       } else {
         const errorResponse = await response.text();
         console.error("Response status:", response.status);
