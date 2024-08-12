@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import cartImage from "../../images/shopping-cart-outline-svgrepo-com.svg";
 import logoImage from "../../images/logo2.png";
-import userIco from "../../images/user-ico.png";
 import { HiUserCircle } from "react-icons/hi";
+import { CartContext } from "../../context/cartContext"; // Import contextul
+
 const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { getTotalItems } = useContext(CartContext); // Folosește contextul pentru a obține numărul de produse din coș
+
   const handleClick = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -28,9 +31,13 @@ const Navbar = () => {
               Products
             </Link>
             <HiUserCircle className="user-icon" />
-            {/* <Link to="/profile" className='nav-link'>Profile</Link> */}
             <Link to="/cart" className="nav-link">
-              <img src={cartImage} alt="Cart" className="cart-icon" />
+              <div className="cart-icon-wrapper">
+                <img src={cartImage} alt="Cart" className="cart-icon" />
+                {getTotalItems() > 0 && (
+                  <span className="cart-count">{getTotalItems()}</span>
+                )}
+              </div>
             </Link>
           </>
         ) : (
@@ -42,7 +49,12 @@ const Navbar = () => {
               Products
             </Link>
             <Link to="/cart" className="nav-link">
-              <img src={cartImage} alt="Cart" className="cart-icon" />
+              <div className="cart-icon-wrapper">
+                <img src={cartImage} alt="Cart" className="cart-icon" />
+                {getTotalItems() > 0 && (
+                  <span className="cart-count">{getTotalItems()}</span>
+                )}
+              </div>
             </Link>
           </>
         )}
