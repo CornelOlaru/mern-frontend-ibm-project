@@ -119,9 +119,13 @@ const UserId = () => {
             Email:
             <input name="email" type="email" value={formData.email} onChange={handleInputChange} />
           </label>
-          <label htmlFor="role">
-            Role:
-            <input name="role" type="text" value={formData.role} onChange={handleInputChange} />
+          <label>
+            <strong>Role:</strong>
+            <select name="role" value={formData.role} onChange={handleInputChange}>
+              <option value="customer">Customer</option>
+              <option value="distributor">Distributor</option>
+              <option value="admin">Admin</option>
+            </select>
           </label>
         </div>
       )}

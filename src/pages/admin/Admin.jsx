@@ -10,6 +10,7 @@ import Users from "../../components/all users/Users";
 import Orders from "../../components/orders/Orders";
 import Form from "../../components/Form";
 import FormModal from "../../components/FormModal";
+import { Bar } from "react-chartjs-2";
 
 const Admin = () => {
   const [showModal, setShowModal] = useState(false);
@@ -64,7 +65,6 @@ const Admin = () => {
       <h3  id="general" className="admin-title" >
         General
       </h3>
-      <button variant="primary" onClick={handleShow}>Create User</button>
       <div className="">
 
       <FormModal 
@@ -78,11 +78,13 @@ const Admin = () => {
       <h3 id="users" className="admin-title" >
         Users
       </h3>
+      <button variant="primary" onClick={handleShow}>Create User</button>
       <Users/>
       <h3 id="orders" className="admin-title">
         Orders
       </h3>
       <Orders/>
+      
       {/* <MyProfile /> */}
     </div>
   </main>

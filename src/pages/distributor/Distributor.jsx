@@ -5,15 +5,16 @@ import Statistics from "../../components/statistics/Statistics";
 import Users from "../../components/all users/Users";
 import Orders from "../../components/orders/Orders";
 import "./distributor.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { MdDeleteForever, MdOutlineOpenInNew } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 
 const Distributor = () => {
   const [products, setProducts] = useState([]);
+  const [product, setProduct] = useState(null);
   const token = localStorage.getItem("token");
-
-  useEffect(() => {
+  const {productId} = useParams();
+   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await fetch("http://localhost:3001/api/products", {
@@ -88,6 +89,31 @@ const Distributor = () => {
 
     thisClicked.innerText = "Delete";
   }
+  useEffect(()=>{
+
+    const fetchProduct = async () => {
+      try {
+        const response = await fetch(`http://localhost:3001/api/products/${productId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log(response)
+      if (!response.ok) {
+        console.error(`Error: ${response.status} ${response.statusText}`);
+        throw new Error(`Network response was not ok: ${response.status}`);
+        
+      }
+      const data = await response.json();
+      // console.log(data)
+      setProduct(data);
+      
+    } catch (error) {
+      console.error('Error fetching the product details', error);
+    }
+  };
+  fetchProduct();
+}, [productId])
   return (
     <main className="admin-container">
       <Navbar />
@@ -111,10 +137,10 @@ const Distributor = () => {
                 <td> {product.stock}</td>
                 <td> {product.category}</td>
                 <td>
-                  <Link className="action-icon">
+                  <Link to={`/products/${product._id}`} className="action-icon">
                     <MdOutlineOpenInNew title="View" />
                   </Link>
-                  <Link  className="action-icon">
+                  <Link to={`/products/${product._id}`} className="action-icon">
                     <FaRegEdit title="Edit" />
                   </Link>
                   <button onClick={(e) => deleteProduct(e, product._id)} className="action-icon">
