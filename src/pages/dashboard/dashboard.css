@@ -1,6 +1,6 @@
 .dashboard-content {
   padding: 20px;
-  margin-top: 10%;
+  margin-top: 10px;
 }
 .user-table{
     border: 1px solid #417556;
@@ -29,6 +29,7 @@ section {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  
 }
 
 
@@ -61,7 +62,7 @@ section {
 }
 
 .product-name {
-  font-size: 18px;
+  font-size: 10px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #333;
