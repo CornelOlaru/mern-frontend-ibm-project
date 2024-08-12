@@ -107,7 +107,7 @@ const Dashboard = () => {
           <div className="about-content">
             <div className="about-images">
               <img src="/src/images/placeholder1.png" alt="Placeholder 1" className="about-image image1" />
-              <img src="/src/images/placeholder2.jpg" alt="Placeholder 2" className="about-image image2" />
+              <img src="/src/images/placeholder3.jpg" alt="Placeholder 2" className="about-image image2" />
             </div>
             <div className="about-text">
               <p>Welcome to our world of homemade soaps and candles! Discover our passion for crafting eco-friendly, handmade products using only the finest natural ingredients.</p>
@@ -126,7 +126,7 @@ const Dashboard = () => {
                 </Link>
                 <div className="product-info">
                   <h3 className="product-name">{product.name}</h3>
-                  <p className="product-price">Price: {product.price}</p>
+                  <p className="product-price">Price: {product.price} $</p>
                 </div>
               </div>
             ))}
@@ -143,7 +143,7 @@ const Dashboard = () => {
                 </Link>
                 <div className="product-info">
                   <h3 className="product-name">{product.name}</h3>
-                  <p className="product-price">Price: {product.price}</p>
+                  <p className="product-price">Price: {product.price} $</p>
                 </div>
               </div>
             ))}

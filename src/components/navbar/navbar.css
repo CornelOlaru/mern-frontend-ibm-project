@@ -30,6 +30,7 @@
     background-position: center;
   transition: 0.5s;
 }
+    
 .nav-links{
     display: flex;
     flex-direction: row;
@@ -157,3 +158,29 @@
     align-items: center;
     
   }
+
+.cart-icon-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.cart-icon {
+    height: 39px;
+    width: 60px;
+}
+
+.cart-count {
+    position: absolute;
+    bottom: 5px; /* Ajustează acestă valoare pentru a muta în sus sau în jos */
+    right: 5px; /* Ajustează acestă valoare pentru a muta în stânga sau în dreapta */
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 12px; /* Ajustează dimensiunea fontului aici */
+    font-weight: bold;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

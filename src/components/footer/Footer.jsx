@@ -22,7 +22,7 @@ const Footer = () => {
             <h3 className='footer-title'>Help</h3>
             <ul className='footer-links'> 
             <Link to="/help#store-policy">Store policy</Link>
-            <Link to="/help#payment-methods">Payment methods</Link>
+            <Link id="payment-methods" to="/help#payment-methods">Payment methods</Link>
             <Link to="/help#faq">FAQ</Link>
                 
                 

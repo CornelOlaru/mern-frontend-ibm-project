@@ -1,19 +1,23 @@
+import React, { useContext } from "react";
 import React, { useState } from "react";
 import "./navbar.css";
 import { Link, useNavigate } from "react-router-dom";
 import logoImage from "../../images/logo2.png";
-import userIco from "../../images/user-ico.png";
 import { HiUserCircle } from "react-icons/hi";
 import { FiShoppingCart } from "react-icons/fi";
 import { jwtDecode } from "jwt-decode";
 import { FaArrowDown } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 
+import { CartContext } from "../../context/cartContext"; // Import contextul
+
 const Navbar = () => {
   const [color, setColor] = useState(false);
 
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const { getTotalItems } = useContext(CartContext); // Folosește contextul pentru a obține numărul de produse din coș
+
   const handleClick = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -44,6 +48,21 @@ const Navbar = () => {
       <nav className="nav-links">
         {token ? (
           <>
+            <button className="nav-button" onClick={handleClick}>
+              Logout
+            </button>
+            <Link to="/products" className="nav-link">
+              Products
+            </Link>
+            <HiUserCircle className="user-icon" />
+            <Link to="/cart" className="nav-link">
+              <div className="cart-icon-wrapper">
+                <img src={cartImage} alt="Cart" className="cart-icon" />
+                {getTotalItems() > 0 && (
+                  <span className="cart-count">{getTotalItems()}</span>
+                )}
+              </div>
+            </Link>
             <div className="nav-user user">
               
             </div>
@@ -141,6 +160,12 @@ const Navbar = () => {
               Contact
             </Link>
             <Link to="/cart" className="nav-link">
+              <div className="cart-icon-wrapper">
+                <img src={cartImage} alt="Cart" className="cart-icon" />
+                {getTotalItems() > 0 && (
+                  <span className="cart-count">{getTotalItems()}</span>
+                )}
+              </div>
               <FiShoppingCart className="cart-icon" />
             </Link>
           </>
