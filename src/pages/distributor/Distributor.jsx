@@ -117,8 +117,13 @@ const Distributor = () => {
   return (
     <main className="admin-container">
       <Navbar />
-      <Aside />
+      <div className="aside-distributor">
+
+      <Aside  />
+      </div>
       <div className="distributor-dashboard">
+        <Statistics/>
+        <h1>Products</h1>
         <table className="product-table">
           <thead>
             <tr>

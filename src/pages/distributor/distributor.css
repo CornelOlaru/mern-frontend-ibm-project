@@ -7,6 +7,7 @@
     
 
 }
+
 .distributor-dashboard{
     width: 100%;
     margin:0 1%;
@@ -23,6 +24,7 @@
 
 .product-table{
     width: 100%;
+    margin-bottom: 20px;
 }
 table{
     /* width: 100%; */

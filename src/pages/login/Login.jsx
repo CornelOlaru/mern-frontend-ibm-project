@@ -54,8 +54,8 @@ const Login = () => {
       }
       localStorage.getItem("token", result.token);
       const decoded = jwtDecode(result.token);
-      console.log(decoded);
-      console.log(result);
+      // console.log(decoded);
+      // console.log(result);
       // if (!result.token) {
 
       // }

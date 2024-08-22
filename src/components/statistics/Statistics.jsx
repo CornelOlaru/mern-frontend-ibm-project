@@ -54,7 +54,7 @@ const Statistics = () => {
   const totalSum = orders.reduce(
     (accumulator, order) => accumulator + order.totalPrice,
     0
-  );
+  ).toFixed(2);
   return (
     <div>
       <div className="statistics-container">

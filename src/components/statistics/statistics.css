@@ -48,7 +48,7 @@
     background-color: var(--green);
     font-size: 1.2rem;
     font-weight: 600;
-
+cursor: default;
 }
 
 .chart{

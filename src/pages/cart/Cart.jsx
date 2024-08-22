@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {jwtDecode} from 'jwt-decode'; // Correct import
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import { CartContext } from '../../context/cartContext';
@@ -19,10 +20,24 @@ const Cart = () => {
     cvv: ''
   });
   const [isFormValid, setIsFormValid] = useState(false);
+  const [userId, setUserId] = useState(null); // State to store userId
 
   const navigate = useNavigate();
 
-  // Function to check if all required fields are filled
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      try {
+        const decodedToken = jwtDecode(token);
+        console.log(decodedToken.id)
+        setUserId(decodedToken.id); // Adjust according to your token's structure
+       
+      } catch (error) {
+        console.error('Token decoding failed:', error);
+      }
+    }
+  }, []); // Empty dependency array ensures this runs only once
+
   useEffect(() => {
     const isCardPayment = paymentMethod === 'card';
     const isCardDetailsFilled = isCardPayment
@@ -30,10 +45,6 @@ const Cart = () => {
       : true;
     const isAddressFilled = address && county && city && phoneNumber;
 
-    console.log("Address Filled:", isAddressFilled);
-    console.log("Card Payment Selected:", isCardPayment);
-    console.log("Card Details Filled:", isCardDetailsFilled);
-    
     setIsFormValid(isCardDetailsFilled && isAddressFilled);
   }, [address, county, city, phoneNumber, paymentMethod, cardDetails]);
 
@@ -41,40 +52,40 @@ const Cart = () => {
     setCheckout(true);
   };
 
-  const handlePlaceOrder = () => {
-    if (!isFormValid) return;
+  const handlePlaceOrder =  () => {
+    if (!isFormValid || !userId) return;
 
-    const orderDetails = {
-      user: 'userId', // trebuie luat din auth context or state
-      items: cart.map(item => ({
-        product: item._id,
-        quantity: item.quantity,
-        price: item.price,
-      })),
-      totalPrice: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
-      status: 'pending',
-      address,
-      county,
-      city,
-      phoneNumber,
-      paymentMethod,
-      cardDetails: paymentMethod === 'card' ? cardDetails : null
-    };
+    // const orderDetails = {
+    //   user: userId.id,
+    //   items: cart.map(item => ({
+    //     product: item._id,
+    //     quantity: item.quantity,
+    //     price: item.price,
+    //   })),
+    //   totalPrice: cart.reduce((sum, item) => sum + item.price * item.quantity, 0),
+    //   status: 'pending',
+    //   orderDate: new Date().toISOString(),
+    // };
 
-    fetch('http://localhost:3001/api/orders/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(orderDetails),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data.message);
-        alert('Order placed!'); // Show notification
-        setCart([]); 
+//  const response =  await fetch('http://localhost:3001/api/orders/', {
+//       method: 'POST',
+//       headers: { 
+//         'Content-Type': 'application/json',
+//         Authorization: `Bearer ${localStorage.getItem("token")}`
+//       },
+//       body: JSON.stringify(orderDetails),
+//     })
+//      const data = await response.json();
+//      console.log(data)
+     alert("Order Placed Succesfully")
+        setCart([]);
+        
         setCheckout(false);
-        navigate('/orders');
-      });
-  };
+        navigate('/');
+        
+
+      }
+  
 
   const updateQuantity = (productId, delta) => {
     setCart((prevCart) =>

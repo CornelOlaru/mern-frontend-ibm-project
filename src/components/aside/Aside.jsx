@@ -30,6 +30,7 @@ const Aside = () => {
   };
   const scrollToGeneral = () => {
     generalRef.current.scrollIntoView({ behavior: "smooth" });
+    
   };
   const scrollToOrders = () => {
     ordersRef.current.scrollIntoView({ behavior: "smooth" });

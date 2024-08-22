@@ -18,6 +18,26 @@
     font-size: 2rem;
     padding:0 10px;
     padding-top: 60px; /* Adjust this value based on your navbar's height */
-  margin-top: -60px; /* Adjust this value to compensate for the padding */
+  margin-top: -60px; 
 }
 
+.modal-container{
+    display: flex;
+    margin: 5% 1%;
+    margin-left:11%;
+}
+.modal-button{
+    display: flex;
+    justify-content: space-between;
+}
+.secondary{
+    background-color: transparent;
+    color: #000;
+    border: 1px solid #4CAF50;
+}
+
+.create-user{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    /* padding: 10px; */
+}

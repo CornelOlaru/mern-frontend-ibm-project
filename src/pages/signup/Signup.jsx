@@ -5,9 +5,10 @@ import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
 import { FaInfoCircle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
-//Validarea pentru user si parola
+// Validarea pentru user si parola
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%_]).{8,24}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -20,18 +21,16 @@ const Signup = () => {
   const [showRetypedPassword, setShowRetypedPassword] = useState(true);
   const [validPwd, setValidPwd] = useState(false);
   const [pwdFocus, setPwdFocus] = useState(false);
-  const [validEmail, setvalidEmail] = useState(false);
+  const [validEmail, setValidEmail] = useState(false);
   const [emailFocus, setEmailFocus] = useState(false);
   const [validConfirmedPass, setValidConfirmedPass] = useState(false);
   const [validConfirmedPassFocus, setValidConfirmedPassFocus] = useState(false);
-  const [isPasswordMatch, setIsPasswordMatch] = useState(false);
-
   const [errorMessage, setErrorMessage] = useState("");
-
 
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
   };
+
   const showRetypedPasswordFunction = () => {
     setShowRetypedPassword(!showRetypedPassword);
   };
@@ -49,19 +48,21 @@ const Signup = () => {
   }, [formData.password]);
 
   useEffect(() => {
-    setvalidEmail(EMAIL_REGEX.test(formData.email));
+    setValidEmail(EMAIL_REGEX.test(formData.email));
   }, [formData.email]);
+
   useEffect(() => {
     // Check if passwords match
-    if (validPwd && confirmPassword) {
-      setIsPasswordMatch(validPwd === confirmPassword);
-    } else {
-      setIsPasswordMatch(false);
-    }
-  }, [validPwd, confirmPassword]);
+    setValidConfirmedPass(formData.password === confirmPassword);
+  }, [formData.password, confirmPassword]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validPwd || !validEmail || !validConfirmedPass) {
+      setErrorMessage("Please fill out the form correctly.");
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3001/user/register", {
         method: "POST",
@@ -72,19 +73,17 @@ const Signup = () => {
       });
       const result = await response.json();
       console.log(result);
-     
+
       if (response.ok) {
-        alert("Account created succesfully!")
-        navigate("/");
+        alert("Account created successfully!");
+        navigate("/login")
         return result;
       } else {
         setErrorMessage(result.message || "Registration failed. Please try again.");
-
       }
     } catch (error) {
       console.log(error.message);
       setErrorMessage(error.message);
-
     } finally {
       setFormData({
         name: "",
@@ -109,7 +108,6 @@ const Signup = () => {
                 {errorMessage}
               </p>
             )}
-
 
             <div className="form-row">
               <label className="form-label">Name</label>
@@ -143,10 +141,7 @@ const Signup = () => {
               id="emailnote"
               className={emailFocus && !validEmail ? "instructions" : "offscreen"}
             >
-              <FaInfoCircle
-                style={{ marginRight: "5px" }}
-                
-              />
+              <FaInfoCircle style={{ marginRight: "5px" }} />
               Please enter a valid email address.
               <br />
               Example: user@example.com
@@ -155,7 +150,6 @@ const Signup = () => {
               <label className="form-label">Password</label>
               <div className="form-input">
                 <input
-                  className=""
                   id="password"
                   name="password"
                   type={showPassword ? "password" : "text"}
@@ -163,11 +157,10 @@ const Signup = () => {
                   value={formData.password}
                   onChange={handleInputChange}
                   onFocus={() => setPwdFocus(true)}
-                onBlur={() => setPwdFocus(false)}
+                  onBlur={() => setPwdFocus(false)}
                   required
                 />
-
-                <span className="" onClick={showPasswordFunction}>
+                <span onClick={showPasswordFunction}>
                   {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </div>
@@ -179,8 +172,7 @@ const Signup = () => {
               <FaInfoCircle style={{ marginRight: "5px" }} />
               8 to 24 characters.
               <br />
-              Must include uppercase and lowercase letters, a number and a
-              special character.
+              Must include uppercase and lowercase letters, a number, and a special character.
               <br />
               Allowed special characters:
               <span aria-label="exclamation mark">!</span>
@@ -188,46 +180,45 @@ const Signup = () => {
               <span aria-label="hashtag">#</span>
               <span aria-label="dollar sign">$</span>
               <span aria-label="percent">%</span>
-              <span aria-label="percent">_</span>
+              <span aria-label="underscore">_</span>
             </p>
             <div className="form-row">
               <label className="form-label">Confirm Password</label>
               <div className="form-input">
                 <input
-                  className=""
-                  id="ConfirmPassword"
-                  name="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
                   type={showRetypedPassword ? "password" : "text"}
-                  placeholder="Password"
+                  placeholder="Confirm Password"
                   value={confirmPassword}
-                  onChange={(e)=> {setConfirmPassword(e.target.value)}}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
                   onFocus={() => setValidConfirmedPassFocus(true)}
-                onBlur={() => setValidConfirmedPassFocus(false)}
+                  onBlur={() => setValidConfirmedPassFocus(false)}
                   required
                 />
-                <span className="" onClick={showRetypedPasswordFunction}>
+                <span onClick={showRetypedPasswordFunction}>
                   {showRetypedPassword ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </div>
             </div>
             <p
               id="confpwdnote"
-              className={validConfirmedPassFocus && !validConfirmedPass ? "instructions" : "offscreen"}
+              className={
+                validConfirmedPassFocus && !validConfirmedPass
+                  ? "instructions"
+                  : "offscreen"
+              }
             >
-              <FaInfoCircle
-                style={{ marginRight: "5px" }}
-                
-              />
+              <FaInfoCircle style={{ marginRight: "5px" }} />
               Passwords do not match!
-             
             </p>
-            { isPasswordMatch ? <button className="form-button" type="submit">
+            <button
+              className="form-button"
+              type="submit"
+              
+            >
               Sign up
-            </button> : 
-            <button className="form-button-disabled"  type="submit" disabled>
-            Sign up
-          </button>
-          }
+            </button>
 
             <Link className="login-link" to="/login">
               Already have an account?
