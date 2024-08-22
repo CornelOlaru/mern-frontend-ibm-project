@@ -13,9 +13,11 @@ const UserId = () => {
     email: "",
     role: ""
   });
+  
   const handleModifyData = () => {
     setForm(!form);
   };
+  
   useEffect(() => {
     try {
       const getUserById = async () => {
@@ -89,39 +91,56 @@ const UserId = () => {
   };
 
   if (!user) {
-    return <div>Loading...</div>; // Display loading while fetching user data
+    return <div className="loading">Loading...</div>; // Display loading while fetching user data
   }
 
   return (
-    <>
+    <div className="user-container">
       {!form ? (
-        <div key={user._id}>
-          <label style={{ width: "200px", height: "200px" }} htmlFor="name">
+        <div key={user._id} className="user-info">
+          <label className="user-label" htmlFor="name">
             Name:
-            <input type="text" value={user.name} disabled />
+            <input type="text" value={user.name} disabled className="user-input" />
           </label>
-          <label htmlFor="email">
+          <label className="user-label" htmlFor="email">
             Email:
-            <input type="email" value={user.email} disabled />
+            <input type="email" value={user.email} disabled className="user-input" />
           </label>
-          <label htmlFor="role">
+          <label className="user-label" htmlFor="role">
             Role:
-            <input type="text" value={user.role} disabled />
+            <input type="text" value={user.role} disabled className="user-input" />
           </label>
         </div>
       ) : (
-        <div key={user._id}>
-          <label style={{ width: "200px", height: "200px" }} htmlFor="name">
+        <div key={user._id} className="user-info">
+          <label className="user-label" htmlFor="name">
             Name:
-            <input name="name" type="text" value={formData.name} onChange={handleInputChange} />
+            <input
+              name="name"
+              type="text"
+              value={formData.name}
+              onChange={handleInputChange}
+              className="user-input"
+            />
           </label>
-          <label htmlFor="email">
+          <label className="user-label" htmlFor="email">
             Email:
-            <input name="email" type="email" value={formData.email} onChange={handleInputChange} />
+            <input
+              name="email"
+              type="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              className="user-input"
+            />
           </label>
-          <label>
-            <strong>Role:</strong>
-            <select name="role" value={formData.role} onChange={handleInputChange}>
+          <label className="user-label">
+            Role:
+            <select
+              name="role"
+              value={formData.role}
+              onChange={handleInputChange}
+              className="user-select"
+            >
               <option value="customer">Customer</option>
               <option value="distributor">Distributor</option>
               <option value="admin">Admin</option>
@@ -129,9 +148,13 @@ const UserId = () => {
           </label>
         </div>
       )}
-      <button onClick={handleModifyData}>{form ? "Cancel" : "Modify"}</button>
-      {form && <button onClick={handleSubmit}>Submit</button>}
-    </>
+      <div className="user-buttons">
+        <button className="btn btn-primary" onClick={handleModifyData}>
+          {form ? "Cancel" : "Modify"}
+        </button>
+        {form && <button className="btn btn-secondary" onClick={handleSubmit}>Submit</button>}
+      </div>
+    </div>
   );
 };
 

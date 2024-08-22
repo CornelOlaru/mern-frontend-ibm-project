@@ -1,9 +1,9 @@
-body {
+/* body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 
 .product-page-2 {
@@ -92,6 +92,7 @@ body {
 
 .related-products-2 {
   margin-top: 90px;
+;
 }
 
 .related-products-2 h2 {
@@ -126,6 +127,7 @@ body {
   object-fit: cover;
   aspect-ratio: 1/1;
   display: block;
+
 }
 
 .related-product-name-2 {
@@ -133,6 +135,7 @@ body {
   font-weight: bold;
   color: #333;
   margin-bottom: 10px;
+  
 }
 
 .related-product-price-2 {

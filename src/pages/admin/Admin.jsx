@@ -65,20 +65,24 @@ const Admin = () => {
       <h3  id="general" className="admin-title" >
         General
       </h3>
-      <div className="">
+      <div className="modal" >
 
       <FormModal 
       show={showModal}
       handleCreate={handleCreate}
       handleClose={handleClose}
       formFields={formFields}
+     
       />
       </div>
       <Statistics/>
+     
+
       <h3 id="users" className="admin-title" >
         Users
       </h3>
-      <button variant="primary" onClick={handleShow}>Create User</button>
+      <button className="create-user" variant="primary" onClick={handleShow}>Create User</button>
+    
       <Users/>
       <h3 id="orders" className="admin-title">
         Orders

@@ -12,7 +12,7 @@
     background-position: center;
     position: fixed;
     height: 100%;
-    
+    padding-top: 60px;
 }
 /* Dropdown content (hidden by default) */
 .side-dropdown-content {

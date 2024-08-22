@@ -18,22 +18,26 @@ const FormModal = ({ show, handleClose, formFields, handleCreate, title }) => {
   if (!formFields || formFields.length === 0) return null;
 
   return (
-    <Modal className="" show={show} onHide={handleClose}>
-      <Modal.Header closeButton>
-        <Modal.Title>{title}</Modal.Title>
+    <Modal className="modal-container" show={show} onHide={handleClose}>
+      <Modal.Header className="modal-header">
+        <Modal.Title className="modal-title">
+          <h2>
+          Create User
+          </h2>
+          </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="modal-body">
         <Form
           formData={formData}
           handleInputChange={handleInputChange}
           fields={formFields}
         />
       </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
+      <Modal.Footer className="modal-button">
+        <Button className="secondary" onClick={handleClose}>
           Close
         </Button>
-        <Button variant="danger" onClick={handleSubmit}>
+        <Button className="primary" onClick={handleSubmit}>
           Create
         </Button>
       </Modal.Footer>
