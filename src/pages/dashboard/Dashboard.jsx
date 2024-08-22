@@ -46,7 +46,7 @@ const Dashboard = () => {
 
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/products", {
+        const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/products", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
