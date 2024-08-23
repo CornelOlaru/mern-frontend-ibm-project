@@ -2,7 +2,8 @@ import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import './about.css';
-
+import placeholder1 from "../../images/placeholder1.png"
+import placeholder2 from "../../images/placeholder2.jpg"
 const About = () => {
   return (
     <div className="about-page">
@@ -11,8 +12,8 @@ const About = () => {
         <h1 className="about-title">A STORY OF FRESHNESS</h1>
         <div className="about-content">
           <div className="about-images">
-            <img src="/src/images/placeholder1.png" alt="Placeholder 1" className="about-image image1"/>
-            <img src="/src/images/placeholder2.jpg" alt="Placeholder 2" className="about-image image2"/>
+            <img src={placeholder1} alt="Placeholder 1" className="about-image image1"/>
+            <img src={placeholder2} alt="Placeholder 2" className="about-image image2"/>
           </div>
           <div className="about-text">
             <h3>MEET OUR PASSION</h3>
