@@ -17,7 +17,7 @@
     useEffect(() => {
       const fetchProduct = async () => {
         try {
-          const response = await fetch(`http://localhost:3001/api/products/`, {
+          const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -40,7 +40,7 @@
     const searchProducts = async (query) => {
       console.log('Search query:', query); // Log the search query
       try {
-        const response = await fetch(`http://localhost:3001/api/products/search?q=${encodeURIComponent(query)}`, {
+        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/search?q=${encodeURIComponent(query)}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

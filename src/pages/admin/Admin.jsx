@@ -23,7 +23,7 @@ const Admin = () => {
     // Add logic to handle form submission
     // e.preventDefault();
     try {
-      const response = await fetch("http://localhost:3001/user/register", {
+      const response = await fetch("https://mern-backend-ibm-project.vercel.app/user/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

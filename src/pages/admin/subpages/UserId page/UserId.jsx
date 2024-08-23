@@ -22,7 +22,7 @@ const UserId = () => {
     try {
       const getUserById = async () => {
         const response = await fetch(
-          `http://localhost:3001/api/users/${userId}`,
+          `https://mern-backend-ibm-project.vercel.app/api/users/${userId}`,
           {
             method: "GET",
             headers: {
@@ -65,7 +65,7 @@ const UserId = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/users/${userId}`, {
+      const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/users/${userId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

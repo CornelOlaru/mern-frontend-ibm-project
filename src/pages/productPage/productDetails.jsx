@@ -15,7 +15,7 @@ const ProductDetails = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/products/${productId}`);
+        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/${productId}`);
         if (!response.ok) {
           console.error(`Error: ${response.status} ${response.statusText}`);
           throw new Error(`Network response was not ok: ${response.status}`);
@@ -29,7 +29,7 @@ const ProductDetails = () => {
 
     const fetchRelatedProducts = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/products`);
+        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products`);
         if (!response.ok) {
           console.error(`Error: ${response.status} ${response.statusText}`);
           throw new Error(`Network response was not ok: ${response.status}`);

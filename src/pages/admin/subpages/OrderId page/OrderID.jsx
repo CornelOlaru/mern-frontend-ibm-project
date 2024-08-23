@@ -19,7 +19,7 @@ const OrderID = () => {
     const viewOrder = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/api/orders/${orderId}`,
+          `https://mern-backend-ibm-project.vercel.app/api/orders/${orderId}`,
           {
             method: "GET",
             headers: {
@@ -51,7 +51,7 @@ const OrderID = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/orders/${orderId}`, {
+      const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/orders/${orderId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -7,42 +7,20 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./dashboard.css";
 import Footer from "../../components/footer/Footer";
+import placeholder1 from "../../images/placeholder1.png"
+import placeholder2 from "../../images/placeholder2.jpg"
+
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const token = localStorage.getItem("token");
   const soaps = products.filter(product => product.category === 'Soaps');
   const candles = products.filter(product => product.category === 'Candles');
 
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await axios.get('/api/products');
-  //       setProducts(response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching the products', error);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
   
   useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await fetch("http://localhost:3001/api/users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const result = await response.json();
-        setUsers(result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
+
 
     const fetchProducts = async () => {
       try {
@@ -60,11 +38,6 @@ const Dashboard = () => {
 
     
     fetchProducts();
-    // if (token) {
-    //   fetchUsers();
-    // } else {
-    //   navigate("/login");
-    // }
   }, [token, navigate]);
 
   const sliderSettings = {
@@ -106,8 +79,8 @@ const Dashboard = () => {
           <h2 className="about-title">Discover Our Story</h2>
           <div className="about-content">
             <div className="about-images">
-              <img src="/src/images/placeholder1.png" alt="Placeholder 1" className="about-image image1" />
-              <img src="/src/images/placeholder3.jpg" alt="Placeholder 2" className="about-image image2" />
+              <img src={placeholder1} alt="Placeholder 1" className="about-image image1" />
+              <img src={placeholder2} alt="Placeholder 2" className="about-image image2" />
             </div>
             <div className="about-text">
               <p>Welcome to our world of homemade soaps and candles! Discover our passion for crafting eco-friendly, handmade products using only the finest natural ingredients.</p>

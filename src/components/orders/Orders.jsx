@@ -12,7 +12,7 @@ const Orders = () => {
   useEffect(() => {
     const fetchOrdersData = async () => {
       try {
-        const response = await fetch('http://localhost:3001/api/orders', {
+        const response = await fetch('https://mern-backend-ibm-project.vercel.app/api/orders', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -50,7 +50,7 @@ const Orders = () => {
         return;
       }
 
-      const deleteResponse = await fetch(`http://localhost:3001/api/orders/${_id}`, {
+      const deleteResponse = await fetch(`https://mern-backend-ibm-project.vercel.app/api/orders/${_id}`, {
         method: "DELETE",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -63,7 +63,7 @@ const Orders = () => {
 
       console.log("Product deleted successfully.");
 
-      const response = await fetch("http://localhost:3001/api/orders", {
+      const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/orders", {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${token}`

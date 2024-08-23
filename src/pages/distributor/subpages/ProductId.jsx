@@ -41,7 +41,7 @@ const ProductId = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/products/${productId}`, {
+        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/${productId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -65,7 +65,7 @@ const ProductId = () => {
   const handleSubmit = async (event) => {
     event.preventDefault(); // Prevent form submission from reloading the page
     try {
-      const response = await fetch(`http://localhost:3001/api/products/${productId}`, {
+      const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/${productId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,

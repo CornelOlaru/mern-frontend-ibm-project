@@ -17,7 +17,7 @@ const Distributor = () => {
    useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch("http://localhost:3001/api/products", {
+        const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/products", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -52,7 +52,7 @@ const Distributor = () => {
         return;
       }
 
-      const deleteResponse = await fetch(`http://localhost:3001/api/products/${_id}`, {
+      const deleteResponse = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/${_id}`, {
         method: "DELETE",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -65,7 +65,7 @@ const Distributor = () => {
 
       console.log("Product deleted successfully.");
 
-      const response = await fetch("http://localhost:3001/api/products", {
+      const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/products", {
         method: "GET",
         headers: {
           'Authorization': `Bearer ${token}`
@@ -93,7 +93,7 @@ const Distributor = () => {
 
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:3001/api/products/${productId}`, {
+        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/${productId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
