@@ -4,25 +4,28 @@ import "./users.css";
 import { MdDeleteForever, MdOutlineOpenInNew } from "react-icons/md";
 import { FaRegEdit } from "react-icons/fa";
 import { Bar } from "react-chartjs-2";
+import { getUsers, softDeleteUser } from "../../services/apiService";
+import Loading from "../loading spinners/Loading";
+
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(false);
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchAdminData = async () => {
       try {
-        const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const result = await response.json();
-
-        setUsers(result);
+        setLoading(true)
+       //fetching from apiService
+       
+        const response = await getUsers();
+        setUsers(response)
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false)
       }
     };
     if (token) {
@@ -31,64 +34,48 @@ const Users = () => {
       navigate("/login");
     }
   }, [token, navigate]);
-
+if (loading) {
+  return <div><Loading/></div>
+}
   const deleteUser = async (e, _id) => {
-    e.preventDefault();
+   
+  
     const thisClicked = e.currentTarget;
-
-    const confirmDelete = confirm(`Are you sure you want to delete product with ID ${_id}?`);
+    const confirmDelete = confirm(`Are you sure you want to delete the user with ID ${_id}?`);
     if (!confirmDelete) {
       return;
     }
-
+  
     thisClicked.innerText = "Deleting...";
-
+  
     try {
-      
       if (!token) {
         console.error("Token not found. Redirecting to login.");
         navigate("/login");
         return;
       }
-
-      const deleteResponse = await fetch(`https://mern-backend-ibm-project.vercel.app/api/users/${_id}`, {
-        method: "DELETE",
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!deleteResponse.ok) {
-        throw new Error("Network response was not ok");
+  
+      const deleteResponse = await softDeleteUser(_id, token);
+  
+      // Check if response includes a property indicating success
+      if (deleteResponse && deleteResponse.error) {
+        throw new Error(`Failed to delete user with ID ${_id}: ${deleteResponse.error}`);
       }
-
-      console.log("Product deleted successfully.");
-
-      const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/users", {
-        method: "GET",
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      console.log("Response received:", data);
-
-    
-
-        setUsers(data);
-      
+  
+      console.log(`User with ID ${_id} deleted successfully.`);
+  
+      // Fetch updated list of users instead of re-fetching all users
+      const updatedUsers = await getUsers(token);
+      setUsers(updatedUsers);
+  
     } catch (error) {
-      console.error("Error fetching or parsing data:", error);
+      console.error("Error deleting the user:", error);
+    } finally {
+      thisClicked.innerText = "Delete";
     }
-
-    thisClicked.innerText = "Delete";
-  }
-
+  };
+  
+  
 
 
 
