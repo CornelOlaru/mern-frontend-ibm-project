@@ -6,6 +6,8 @@
   import SearchBar from '../../components/searchInput/searchInput';
   import ProductList from '../displaySearch/displaySearch';
   import Footer from '../../components/footer/Footer';
+import { getProducts } from '../../services/apiService';
+import Loading from '../../components/loading spinners/Loading';
 
   const Products = () => {
     const { productId } = useParams();
@@ -13,30 +15,26 @@
     const [products, setProducts] = useState([]);  
     const token = localStorage.getItem("token");
     const { addToCart } = useContext(CartContext);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
       const fetchProduct = async () => {
+        setLoading(true)
         try {
-          const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-
-          if (!response.ok) {
-            console.error(`Error: ${response.status} ${response.statusText}`);
-            throw new Error(`Network response was not ok: ${response.status}`);
-          }
-          const data = await response.json();
-          setProduct(data);
+          const response = await getProducts();
+          setProduct(response);
         } catch (error) {
           console.error('Error fetching the product details', error);
+        } finally {
+          setLoading(false)
         }
       };
 
       fetchProduct();
     }, [productId, token]);
-
+if (loading) {
+  return <div><Loading/></div>
+}
     const searchProducts = async (query) => {
       console.log('Search query:', query); // Log the search query
       try {

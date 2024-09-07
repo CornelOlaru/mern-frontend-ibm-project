@@ -37,7 +37,7 @@ const Login = () => {
       });
       // const result = await response.json();
       const result = await response.json();
-      const statusResponse = response.status;
+      // const statusResponse = response.status;
       if (response.status === 401) {
         // Handle unauthorized access
         setErrorMessage("Unauthorized: Invalid credentials")

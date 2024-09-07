@@ -14,6 +14,7 @@ const Form = ({ formData, handleInputChange, fields }) => {
             onChange={handleInputChange}
             className="form-control"
           />
+          
         </div>
       ))}
     </form>

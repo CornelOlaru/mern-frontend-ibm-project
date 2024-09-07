@@ -1,92 +1,85 @@
-import React, { useEffect, useState } from 'react';
-import './orders.css';
-import { Link, useNavigate } from 'react-router-dom';
-import { MdDeleteForever, MdOutlineOpenInNew } from 'react-icons/md';
-import { FaRegEdit } from 'react-icons/fa';
+import React, { useEffect, useState } from "react";
+import "./orders.css";
+import { Link, useNavigate } from "react-router-dom";
+import { MdDeleteForever, MdOutlineOpenInNew } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import { getOrders, softDeleteOrder } from "../../services/apiService";
+import Loading from "../loading spinners/Loading";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     const fetchOrdersData = async () => {
+      setLoading(true);
       try {
-        const response = await fetch('https://mern-backend-ibm-project.vercel.app/api/orders', {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        const result = await response.json();
-        setOrders(result); // Set the fetched orders to state
+        const response = await getOrders();
+        setOrders(response); // Set the fetched orders to state
       } catch (error) {
         console.error(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     if (token) {
       fetchOrdersData();
     } else {
-      navigate('/login');
+      navigate("/login");
     }
   }, [token, navigate]);
+  if (loading) return <Loading />;
+
 
   const deleteOrder = async (e, _id) => {
-    e.preventDefault();
-    const thisClicked = e.currentTarget;
+  e.preventDefault();
+  const thisClicked = e.currentTarget;
 
-    const confirmDelete = confirm(`Are you sure you want to delete product with ID ${_id}?`);
-    if (!confirmDelete) {
+  const confirmDelete = confirm(
+    `Are you sure you want to delete the order with ID ${_id}?`
+  );
+  if (!confirmDelete) {
+    return;
+  }
+
+  thisClicked.innerText = "Deleting...";
+
+  try {
+     
+    if (!token) {
+      console.error("Token not found. Redirecting to login.");
+      navigate("/login");
       return;
     }
 
-    thisClicked.innerText = "Deleting...";
+    // Call API to soft delete the order
+    const deleteResponse = await softDeleteOrder(_id, token);
 
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        console.error("Token not found. Redirecting to login.");
-        navigate("/login");
-        return;
-      }
-
-      const deleteResponse = await fetch(`https://mern-backend-ibm-project.vercel.app/api/orders/${_id}`, {
-        method: "DELETE",
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!deleteResponse.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      console.log("Product deleted successfully.");
-
-      const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/orders", {
-        method: "GET",
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      console.log("Response received:", data);
-
-    
-
-        setOrders(data);
-      
-    } catch (error) {
-      console.error("Error fetching or parsing data:", error);
+    // Ensure deleteResponse is properly checked
+    if (deleteResponse && deleteResponse.error) {
+      throw new Error(
+        `Failed to delete order with ID ${_id}: ${deleteResponse.error}`
+      );
     }
 
+    console.log(`Order with ID ${_id} deleted successfully.`);
+
+    // Fetch updated list of orders
+    const updatedOrders = await getOrders(token);
+    if (updatedOrders && !updatedOrders.error) {
+      setOrders(updatedOrders);
+    } else {
+      throw new Error("Failed to fetch updated orders.");
+    }
+  } catch (error) {
+    console.error("Error deleting the order:", error);
+  } finally {
     thisClicked.innerText = "Delete";
   }
+};
+
 
   return (
     <div className="orders-container">
@@ -103,7 +96,7 @@ const Orders = () => {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td>{order?.totalPrice}</td>
+                <td>{order?.totalPrice} $</td>
                 <td>{new Date(order?.orderDate).toLocaleString()}</td>
                 <td>{order?.status}</td>
                 <td>
@@ -113,7 +106,10 @@ const Orders = () => {
                   <Link className="action-icon">
                     <FaRegEdit title="Edit" />
                   </Link>
-                  <button onClick={(e) => deleteOrder(e, order._id)} className="action-icon">
+                  <button
+                    onClick={(e) => deleteOrder(e, order._id)}
+                    className="action-icon"
+                  >
                     <MdDeleteForever title="Delete" />
                   </button>
                 </td>

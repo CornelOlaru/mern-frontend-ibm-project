@@ -14,6 +14,8 @@ const Aside = () => {
   const usersRef = useRef(); // Create a ref for the Users component
   const ordersRef = useRef() // Create a ref for the Orders component
  const generalRef = useRef() // Create a ref for the General component
+ const [dropdownVisible, setDropdownVisible] = useState(false);
+
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
   const toggleDropdown = () => {

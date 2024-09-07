@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./userId.css";
+import { getUsersById, saveUserById } from "../../../../services/apiService";
 
 const UserId = () => {
   const [user, setUser] = useState(null);
@@ -20,24 +21,9 @@ const UserId = () => {
   
   useEffect(() => {
     try {
-      const getUserById = async () => {
-        const response = await fetch(
-          `https://mern-backend-ibm-project.vercel.app/api/users/${userId}`,
-          {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "application/json",
-            },
-          }
-        );
-
-        if (!response.ok) {
-          console.error(`Error: ${response.status} ${response.statusText}`);
-          throw new Error(`Network response was not ok: ${response.status}`);
-        }
-
-        const data = await response.json();
+      const fetchUserById = async () => {
+        const data = await getUsersById(userId);
+        
         if (data && typeof data === "object") {
           setUser(data);
           setFormData({
@@ -51,12 +37,12 @@ const UserId = () => {
       };
 
       if (token && userId) {
-        getUserById();
+        fetchUserById();
       }
     } catch (error) {
       console.log("Error fetching user data", error);
     }
-  }, [token, userId]);
+  }, [token,userId]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -65,14 +51,7 @@ const UserId = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/users/${userId}`, {
-        method: "PUT",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData)
-      });
+      const response = await saveUserById(userId,formData);
 
       if (response.ok) {
         alert("Data modified successfully!");

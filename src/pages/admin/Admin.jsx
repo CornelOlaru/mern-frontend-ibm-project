@@ -43,7 +43,7 @@ const Admin = () => {
       }
     } catch (error) {
       console.log(error.message);
-      setErrorMessage(error.message);
+      // setErrorMessage(error.message);
 
     } finally {
     
@@ -55,7 +55,7 @@ const Admin = () => {
     { name: "name", label: "User Name", type: "text" },
     { name: "email", label: "User Email", type: "email" },
     { name: "password", label: "User Password", type: "password" },
-    { name: "role", label: " User Role", type: "text" },
+    { name: "role", label: " User Role", type: "select" },
   ];
   return (
     <main className="admin-container">

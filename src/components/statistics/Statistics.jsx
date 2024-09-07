@@ -15,6 +15,7 @@ const Statistics = () => {
 
   useEffect(() => {
     const fetchUsersData = async () => {
+      
       try {
         const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/users", {
           headers: {
@@ -29,6 +30,8 @@ const Statistics = () => {
       }
     };
     const fetchOrdersData = async () => {
+      
+
       try {
         const response = await fetch("https://mern-backend-ibm-project.vercel.app/api/orders", {
           headers: {
@@ -40,7 +43,7 @@ const Statistics = () => {
         setOrders(result);
       } catch (error) {
         console.error(error);
-      }
+      } 
     };
 
     if (token) {
@@ -50,11 +53,13 @@ const Statistics = () => {
       navigate("/login");
     }
   }, [token, navigate]);
+ 
 // Pretul total al comenzii
   const totalSum = orders.reduce(
     (accumulator, order) => accumulator + order.totalPrice,
     0
   ).toFixed(2);
+
   return (
     <div>
       <div className="statistics-container">

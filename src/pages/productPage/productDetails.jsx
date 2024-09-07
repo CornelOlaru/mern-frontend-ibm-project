@@ -4,6 +4,8 @@ import Footer from "../../components/footer/Footer";
 import { useParams, Link } from 'react-router-dom';
 import { CartContext } from '../../context/cartContext'; 
 import './productDetails.css';
+import { getProductById, getProducts } from '../../services/apiService';
+import Loading from '../../components/loading spinners/Loading';
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -11,42 +13,37 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
   const token = localStorage.getItem("token");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/${productId}`);
-        if (!response.ok) {
-          console.error(`Error: ${response.status} ${response.statusText}`);
-          throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        const data = await response.json();
-        setProduct(data);
+        setLoading(true)
+        const response = await getProductById(productId);
+        setProduct(response);
       } catch (error) {
         console.error('Error fetching the product details', error);
+      } finally {
+        setLoading(false)
       }
     };
-
+   
     const fetchRelatedProducts = async () => {
       try {
-        const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products`);
-        if (!response.ok) {
-          console.error(`Error: ${response.status} ${response.statusText}`);
-          throw new Error(`Network response was not ok: ${response.status}`);
-        }
-        const data = await response.json();
-        setRelatedProducts(data.filter(p => p._id !== productId).slice(0, 5));
+        const response = await getProducts();
+        setRelatedProducts(response.filter(p => p._id !== productId).slice(0, 5));
       } catch (error) {
         console.error('Error fetching the related products', error);
       }
     };
-
+    
     fetchProduct();
     fetchRelatedProducts();
   }, [productId]);
-
-  if (!product || Object.keys(product).length === 0) {
-    return <div>Loading...</div>;
+  
+  
+  if (!product || Object.keys(product).length === 0 && loading) {
+    return <div><Loading/></div>;
   }
 
   const {
