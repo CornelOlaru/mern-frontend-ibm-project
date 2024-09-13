@@ -1,6 +1,8 @@
 .dashboard-content {
   padding: 20px;
   margin-top: 10px;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .user-table{
@@ -90,10 +92,13 @@ section {
 }
 
 .about-section {
-  margin: 7rem 6rem;
+  /* margin: 7rem 6rem; */
   padding: 1rem;
+  /* width: 100%; */
   display: flex;
+  
   flex-direction: column;
+
   min-height: 100vh;  
   background-color: #f9f9f9;
   border-radius: 50px;
@@ -172,3 +177,11 @@ section {
   background-color: #555;
 }
 
+.slick-next:before {
+  content: '→';
+  color: green;
+}
+.slick-prev:before {
+  content: '←';
+  color: green;
+}

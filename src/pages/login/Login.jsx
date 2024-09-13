@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, redirect, useNavigate } from "react-router-dom";
 import Navbar from "../../components/navbar/Navbar";
 import Footer from "../../components/footer/Footer";
+import {jwtDecode} from "jwt-decode"; // Import without destructuring
 import { FaInfoCircle, FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import { jwtDecode } from "jwt-decode";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -14,10 +14,11 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-
+  // const [token, setToken] = useState("");
   const showPasswordFunction = () => {
     setShowPassword(!showPassword);
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormData({
@@ -25,70 +26,58 @@ const Login = () => {
       [name]: value,
     });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const response = await fetch("https://mern-backend-ibm-project.vercel.app/auth/login", {
+      const response = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
-      // const result = await response.json();
-      const result = await response.json();
-      // const statusResponse = response.status;
-      if (response.status === 401) {
-        // Handle unauthorized access
-        setErrorMessage("Unauthorized: Invalid credentials")
-        console.error("Unauthorized: Invalid credentials");
-        // Display error message to the user
-      } else {
-        localStorage.setItem("token", result.token);
-        navigate("/dashboard"); // Navigate to the dashboard after successful login
-      }
-      localStorage.setItem("token", result.token);
-      if (!result.token) {
-        localStorage.clear("token", result.token);
-        navigate("/login");
-      }
-      localStorage.getItem("token", result.token);
-      const decoded = jwtDecode(result.token);
-      // console.log(decoded);
-      // console.log(result);
-      // if (!result.token) {
 
-      // }
-      if (decoded.role == "admin" && response.ok) {
+      const result = await response.json();
+
+      if (response.status === 401) {
+        setErrorMessage("Unauthorized: Invalid credentials");
+        return;
+      }
+      
+      if (!result.token) {
+        setErrorMessage("Failed to generate token");
+       
+        return;
+      }
+
+      // Save token to localStorage
+      localStorage.setItem("token", result.token)
+      const token = localStorage.getItem('token')
+console.log("Token:", token)
+      // Decode token and redirect based on role
+      const decoded = jwtDecode(token);
+      if (decoded.role === "admin") {
         navigate("/admin");
-      } else if (decoded.role == "distributor" && response.ok) {
+      } else if (decoded.role === "distributor") {
         navigate("/distributor");
-      } else if (decoded.role == "customer" && response.ok) {
+      } else if (decoded.role === "customer") {
         navigate("/");
       } else {
-        setErrorMessage(result.message || "Login failed. Please try again.");
-        console.error("Data format is not as expected:", result);
-        // return result;
+        setErrorMessage("Login failed. Please try again.");
       }
+
     } catch (error) {
-      // console.log(error.message);
-      if (statusResponse === 401) {
-        setErrorMessage("Unauthorized: Invalid credentials")
-        
-      } else {
-
-        setErrorMessage(error.message || "Login failed. Please try again.");
-      }
-
-      // setErrorMessage(error.message);
+      setErrorMessage(error.message || "Login failed. Please try again.");
     } finally {
       setFormData({
-        name: "",
         email: "",
         password: "",
       });
     }
   };
+
   return (
     <>
       <main>
@@ -122,7 +111,6 @@ const Login = () => {
               <label className="form-label">Password</label>
               <div className="form-input">
                 <input
-                  className=""
                   id="password"
                   name="password"
                   type={showPassword ? "password" : "text"}

@@ -23,8 +23,8 @@ const OrderID = () => {
           {
             method: "GET",
             headers: {
-              Authorization: `Bearer ${token}`,
               "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
             },
           }
         );
@@ -86,6 +86,7 @@ const OrderID = () => {
       <h2 className="order-heading">Order Details</h2>
       <div className="order-info">
         <div className="order-detail"><strong>Order ID:</strong> {order._id}</div>
+        
         <div className="order-detail"><strong>User:</strong> {order.user ? order.user : "N/A"}</div>
         <div className="order-detail">
           <strong>Items:</strong>
