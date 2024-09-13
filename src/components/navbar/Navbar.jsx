@@ -19,6 +19,7 @@ const Navbar = () => {
 
   const handleClick = () => {
     localStorage.removeItem("token");
+    
     navigate("/");
   };
   let decoded = null;
@@ -168,9 +169,9 @@ const Navbar = () => {
             <Link to="/cart" className="nav-link">
               <div className="cart-icon-wrapper">
                 <img src={cartImage} alt="Cart" className="cart-icon" />
-                {getTotalItems() > 0 && (
-                  <span className="cart-count">{getTotalItems()}</span>
-                )}
+                  {getTotalItems() > 0 && (
+                    <span className="cart-count">{getTotalItems()}</span>
+                  )}
               </div>
               {/* <FiShoppingCart className="cart-icon" /> */}
             </Link>

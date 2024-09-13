@@ -21,6 +21,7 @@ const items = cart.map(item => ({
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
+        console.log("Decoded token:" ,decodedToken)
         setUserId(decodedToken.id); // Adjust based on token structure
       } catch (error) {
         console.error('Token decoding failed:', error);
@@ -35,7 +36,7 @@ const items = cart.map(item => ({
         items: items,
         totalPrice: totalPrice,
         status: 'pending',
-        orderDate: new Date().toISOString(),
+        // orderDate: new Date().toISOString(),
       };
   
       setOrderDetails(newOrderDetails);
@@ -60,11 +61,12 @@ const items = cart.map(item => ({
     console.log('Token:', token); // Logs the token
   
     try {
+      
       const response = await fetch('http://localhost:3001/api/orders', { // Replace with your actual API endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`, // Include the token if your API requires authentication
+          'Authorization': `Bearer ${token}`, // Include the token if your API requires authentication
         },
         body: JSON.stringify(orderDetails), // Convert orderDetails to JSON string
       });
@@ -83,6 +85,7 @@ const items = cart.map(item => ({
       console.error('Failed to place order:', error);
       alert('Failed to place order. Please try again.');
     }
+    
   };
   
 

@@ -9,8 +9,8 @@ const Contact = () => {
       <Navbar />
       <div className="contact-container spaced-container">
         <div className="contact-info">
+          <h1>AROMIA</h1>
           <p>If you have questions or special inquiries, you're welcome to contact me or fill out this form</p>
-          <h2>AROMIA</h2>
           <p>Tel: +40770955987</p>
           <p>Email: support@aromia.ro</p>
         </div>

@@ -40,7 +40,7 @@ if (loading) {
       try {
         const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/products/search?q=${encodeURIComponent(query)}`, {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         });
     
@@ -72,7 +72,7 @@ if (loading) {
         <div className="related-products-2">
           <h2>All Products</h2>
           <div>
-            {/* <SearchBar onSearch={searchProducts} /> */}
+            <SearchBar onSearch={searchProducts} />
             <ProductList products={products} /> 
           </div>
           <div className="related-products-grid-2">

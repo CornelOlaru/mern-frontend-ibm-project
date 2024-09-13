@@ -4,7 +4,7 @@ const DEV_API_BASE_URL = "http://localhost:3001"
 const fetchData = async (
   endpoint,
   method = "GET",
-  body = null,
+  body,
   token = null
 ) => {
   try {
@@ -45,5 +45,5 @@ export const softDeleteUser = async (_id, token) =>
 export const getOrders = async () => fetchData("api/orders");
 export const softDeleteOrder = async (_id, token) =>
     fetchData(`api/orders/${_id}`, "PUT", { deleted: true }, token);
-export const saveOrder = async (body, token) =>
-  fetchData("api/orders", "POST", body, token);
+export const saveOrder = async (orderDetails, token) =>
+  fetchData("api/orders", "POST", orderDetails, token);
