@@ -32,54 +32,66 @@ const Orders = () => {
   }, [token, navigate]);
   if (loading) return <Loading />;
 
-
   const deleteOrder = async (e, _id) => {
-  e.preventDefault();
-  const thisClicked = e.currentTarget;
+    const thisClicked = e.currentTarget;
 
-  const confirmDelete = confirm(
-    `Are you sure you want to delete the order with ID ${_id}?`
-  );
-  if (!confirmDelete) {
-    return;
-  }
-
-  thisClicked.innerText = "Deleting...";
-
-  try {
-     
-    if (!token) {
-      console.error("Token not found. Redirecting to login.");
-      navigate("/login");
+    const confirmDelete = confirm(
+      `Are you sure you want to delete the order with ID ${_id}?`
+    );
+    if (!confirmDelete) {
       return;
     }
 
-    // Call API to soft delete the order
-    const deleteResponse = await softDeleteOrder(_id, token);
+    thisClicked.innerText = "Deleting...";
 
-    // Ensure deleteResponse is properly checked
-    if (deleteResponse && deleteResponse.error) {
-      throw new Error(
-        `Failed to delete order with ID ${_id}: ${deleteResponse.error}`
-      );
-    }
+    try {
+      if (!token) {
+        console.error("Token not found. Redirecting to login.");
+        navigate("/login");
+        return;
+      }
 
-    console.log(`Order with ID ${_id} deleted successfully.`);
+      // Call API to soft delete the order
+      const deleteResponse = await softDeleteOrder(_id, token);
+      
+      
+      
+      
+      //Classic fetch function working
 
-    // Fetch updated list of orders
-    const updatedOrders = await getOrders(token);
-    if (updatedOrders && !updatedOrders.error) {
+      // const deleteResponse = await fetch(`http://localhost:3001/api/orders/${_id}`, 
+      //   {
+      //     method:'PUT',
+      //     headers: {
+      //       Authorization: `Bearer ${token}`,
+      //       "Content-Type": "application/json",
+            
+      //     },
+      //     body: JSON.stringify({deleted: 'true'})
+      //   },
+        
+      // )
+      // const result = await deleteResponse.json();
+      // Ensure deleteResponse is properly checked
+      if (deleteResponse && deleteResponse.error) {
+        throw new Error(
+          `Failed to delete order with ID ${_id}: ${deleteResponse.error}`
+        );
+      }
+
+      console.log(`Order with ID ${_id} deleted successfully.`, deleteResponse);
+      setLoading(true); // Start loading while fetching updated orders
+      // Fetch updated list of orders
+      const updatedOrders = await getOrders(token);
       setOrders(updatedOrders);
-    } else {
-      throw new Error("Failed to fetch updated orders.");
+      
+    } catch (error) {
+      console.error("Error deleting the order:", error);
+    } finally {
+      setLoading(false); 
+      thisClicked.innerText = "Delete";
     }
-  } catch (error) {
-    console.error("Error deleting the order:", error);
-  } finally {
-    thisClicked.innerText = "Delete";
-  }
-};
-
+  };
 
   return (
     <div className="orders-container">
@@ -96,9 +108,9 @@ const Orders = () => {
           <tbody>
             {orders.map((order) => (
               <tr key={order._id}>
-                <td>{order?.totalPrice} $</td>
-                <td>{new Date(order?.orderDate).toLocaleString()}</td>
-                <td>{order?.status}</td>
+                <td>{order.totalPrice} $</td>
+                <td>{new Date(order.orderDate).toLocaleString()}</td>
+                <td>{order.status}</td>
                 <td>
                   <Link to={`/orders/${order._id}`} className="action-icon">
                     <MdOutlineOpenInNew title="View" />
@@ -108,6 +120,7 @@ const Orders = () => {
                   </Link>
                   <button
                     onClick={(e) => deleteOrder(e, order._id)}
+                    disabled={loading} // Disable while loading
                     className="action-icon"
                   >
                     <MdDeleteForever title="Delete" />
