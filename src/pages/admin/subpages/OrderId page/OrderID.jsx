@@ -19,12 +19,12 @@ const OrderID = () => {
     const viewOrder = async () => {
       try {
         const response = await fetch(
-          `https://mern-backend-ibm-project.vercel.app/api/orders/${orderId}`,
+          `http://localhost:3001/api/orders/${orderId}`,
           {
             method: "GET",
             headers: {
-              "Content-Type": "application/json",
               Authorization: `Bearer ${token}`,
+              "Content-Type": "application/json",
             },
           }
         );
@@ -36,6 +36,7 @@ const OrderID = () => {
 
         const data = await response.json();
         setOrder(data);
+        console.log("order object", data)
         setFormData({ status: data.status });
       } catch (error) {
         console.log("Error fetching order data", error);
@@ -51,7 +52,7 @@ const OrderID = () => {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch(`https://mern-backend-ibm-project.vercel.app/api/orders/${orderId}`, {
+      const response = await fetch(`http://localhost:3001/api/orders/${orderId}`, {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -93,7 +94,7 @@ const OrderID = () => {
           <ul className="order-items">
             {order.items.map((item, index) => (
               <li key={index}>
-                <strong>Product:</strong> {item.product}, 
+                <strong>Product:</strong> {item.product.name}, 
                 <strong> Quantity:</strong> {item.quantity}, 
                 <strong> Price:</strong> ${item.price}
               </li>

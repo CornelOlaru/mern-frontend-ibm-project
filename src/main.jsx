@@ -20,11 +20,12 @@ import { CartProvider } from "./context/cartContext";
 import UserId from "./pages/admin/subpages/UserId page/UserId";
 import OrderID from "./pages/admin/subpages/OrderId page/OrderID";
 import ProductId from "./pages/distributor/subpages/ProductId";
+import Preview from "./pages/demo/Preview";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Dashboard />,
+    element: <Preview />,
   },
   {
     path: "login",
