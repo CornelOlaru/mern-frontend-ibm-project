@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: var(--black);
-  background-color: #f6f6ec;
+  background-color: var(--beige);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -14,12 +14,14 @@
   --purple: rgba(203, 140, 255, 0.8);
   --white: #ffffff;
   --light-gray: rgba(240, 240, 240, 0.87);
-  --black:rgba(22, 22, 22, 0.87);
+  --black:rgba(22, 22, 22, 1);
   --light-dark:rgba(22, 22, 22, 0.37);
   --transparent: transparent;
   --dark-purple: rgba(188, 111, 252, 0.5);
-  --gray:rgba(200, 200, 200, 0.9);
+  --gray:rgba(200, 200, 200, 1);
   --green:rgb(78, 121, 84);
+  --dark-green:rgba(48, 76, 52, 0.8);
+  --beige:#f6f6ec;
 }
 
 html, body {
@@ -43,4 +45,8 @@ body{
 }
 .m-5{
   margin-right: 20px;
+}
+
+.no-scroll {
+  overflow: hidden;
 }

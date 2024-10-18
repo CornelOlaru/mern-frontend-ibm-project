@@ -73,23 +73,23 @@ const Dashboard = () => {
   return (
     <main>
       <Navbar />
-      <div className="dashboard-content">
-        <section className="about-section">
-          <h2 className="about-title">Discover Our Story</h2>
-          <div className="about-content">
-            <div className="about-images">
+      <div className="dashboard-container">
+        <section className="dashboard-section">
+          <h2 className="dashboard-title">Discover Our Story</h2>
+          <div className="dashboard-content">
+            <div className="dashboard-images">
               <img
                 src={placeholder1}
                 alt="Placeholder 1"
-                className="about-image image1"
+                className="dashboard-image image1"
               />
               <img
                 src={placeholder2}
                 alt="Placeholder 2"
-                className="about-image image2"
+                className="dashboard-image image2"
               />
             </div>
-            <div className="about-text">
+            <div className="dashboard-text">
               <p>
                 Welcome to our world of homemade soaps and candles! Discover our
                 passion for crafting eco-friendly, handmade products using only
@@ -101,7 +101,7 @@ const Dashboard = () => {
             </div>
           </div>
         </section>
-        <section>
+        <section className="products-section">
           <h2>Soaps</h2>
           <Slider {...sliderSettings}>
             {soaps.map((product) => (
@@ -122,7 +122,7 @@ const Dashboard = () => {
           </Slider>
         </section>
 
-        <section>
+        <section className="products-section">
           <h2>Candles</h2>
           <Slider {...sliderSettings}>
             {candles.map((product) => (

@@ -6,8 +6,10 @@ import placeholder1 from "../../images/placeholder1.png"
 import placeholder2 from "../../images/placeholder2.jpg"
 const About = () => {
   return (
-    <div className="about-page">
+    <>
+
       <Navbar />
+    <div className="about-page">
       <main className="about-container spaced-container">
         <h1 className="about-title">A STORY OF FRESHNESS</h1>
         <div className="about-content">
@@ -26,8 +28,9 @@ const About = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
+      <Footer />
+    </>
   );
 };
 

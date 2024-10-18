@@ -15,7 +15,7 @@ const Orders = () => {
     const fetchOrdersData = async () => {
       setLoading(true);
       try {
-        const response = await getOrders();
+        const response = await getOrders(token);
         setOrders(response); // Set the fetched orders to state
       } catch (error) {
         console.error(error);

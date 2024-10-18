@@ -40,6 +40,7 @@
     border-radius: 10px;
     background-color: var(--light-gray);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: auto 5%;
 }
 
 /* Title of the form */
@@ -82,6 +83,7 @@ align-items: center;
 outline: none;
 margin-top: 0;
 /* padding-top: 0; */
+position: relative;
 
 }
 .form-input img {
@@ -94,6 +96,7 @@ margin-top: 0;
   flex: 1;
   border: none;
   background: none;
+  width: 100%;
 }
 input:focus::placeholder{
   color: transparent;
@@ -148,11 +151,12 @@ input:focus::placeholder{
   /* color: rgba(203, 140, 255, 0.5); */
   color: var(--black);
 }
-.eye-password3{
+
+.eye-password{
   
   width: fit-content;
   height: fit-content;
-  
+  position: absolute;
 }
 .form-input input{
   font-size: 1rem;
@@ -192,10 +196,16 @@ button:hover {
     .login-form {
         width: 50%;
     }
+    .form-row{
+      width: 80%;
+    }
 }
 
 @media (min-width: 1024px) {
     .login-form {
         width: 30%;
+    }
+    .form-row{
+      width: 80%;
     }
 }
