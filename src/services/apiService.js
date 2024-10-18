@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
+
 const PROD_API_BASE_URL = "https://mern-backend-ibm-project.vercel.app";
 const DEV_API_BASE_URL = "http://localhost:3001";
-
 const fetchData = async (endpoint, method = "GET", body, token = null) => {
   try {
+    
     const response = await fetch(`${DEV_API_BASE_URL}/${endpoint}`, {
       method,
       headers: {
@@ -13,6 +15,11 @@ const fetchData = async (endpoint, method = "GET", body, token = null) => {
     });
     console.log(response);
     if (!response.ok) {
+      if (response.status === 403) {
+        //If token is invalid or missing, clear token and redirect to login
+        localStorage.removeItem("token");
+        navigate("/login");
+      }
       const errorData = await response.json();
       console.error(`Error ${method} from ${endpoint}:`, errorData);
       throw new Error(

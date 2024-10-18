@@ -5,8 +5,9 @@ import './contact.css';
 
 const Contact = () => {
   return (
-    <div className='contact-page'>
+    <>
       <Navbar />
+    <div className='contact-page'>
       <div className="contact-container spaced-container">
         <div className="contact-info">
           <h1>AROMIA</h1>
@@ -37,9 +38,10 @@ const Contact = () => {
       </div>
       <div className='contact-footer'> 
 
-      <Footer />
       </div>
     </div>
+      <Footer />
+    </>
   );
 };
 

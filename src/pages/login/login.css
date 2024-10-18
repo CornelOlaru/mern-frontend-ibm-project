@@ -3,15 +3,16 @@
 /* Container for the login */
 .login-container {
   position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ 
+  height: 100vh;
     
     &::before{
       content: "";
       position: absolute;
-      top: 0px;
+      top: 0;
       right: 0;
       bottom: 0;
       left: 0;
@@ -58,7 +59,7 @@
 .form-row{
   display: flex;
   flex-direction: column;
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
 
 }
@@ -80,8 +81,13 @@
 -moz-box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
 box-shadow: 1px 12px 26px -11px rgba(0,0,0,0.59);
 font-size: 1rem;
-}
+position: relative;
 
+
+}
+.password-input input{
+  width: 100%;
+}
 input:focus::placeholder{
   color: transparent;
 }
@@ -118,10 +124,10 @@ input:focus::placeholder{
 }
 
 .eye-password{
-  position: relative;
+  position: absolute;
   width: fit-content;
   height: fit-content;
-  
+  right: 10px;
   color: #000;
 }
 
@@ -130,6 +136,10 @@ input:focus::placeholder{
     .login-form {
         width: 50%;
     }
+    .form-row{
+      width: 80%;
+    }
+    
 }
 
 @media (min-width: 1024px) {

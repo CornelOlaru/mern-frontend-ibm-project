@@ -19,7 +19,7 @@ const Users = () => {
         setLoading(true);
         //fetching from apiService
 
-        const response = await getUsers();
+        const response = await getUsers(token);
         setUsers(response);
       } catch (error) {
         console.error(error);
