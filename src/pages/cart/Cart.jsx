@@ -11,23 +11,6 @@ const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
   const navigate = useNavigate();
 
-
-
-  if (cart.length === 0) {
-    return (
-      <div className="page-container">
-        <Navbar />
-        <div className="navbar-spacing"></div>
-        <div className="content-wrapper empty-cart">
-          <h2>My cart</h2>
-          <p>Cart is empty</p>
-          <button onClick={() => navigate('/')}>Continue Browsing</button>
-        </div>
-        <div className="footer-spacing"></div>
-        <Footer />
-      </div>
-    );
-  }
   const updateQuantity = (productId, delta) => {
     setCart((prevCart) =>
       prevCart.map((item) =>
@@ -44,8 +27,9 @@ const Cart = () => {
   
   if (cart.length === 0) {
     return (
-      <div className="page-container">
+      <>
         <Navbar />
+      <div className="page-container">
         <div className="navbar-spacing"></div>
         <div className="content-wrapper empty-cart">
           <h2>My cart</h2>
@@ -55,12 +39,14 @@ const Cart = () => {
         <div className="footer-spacing"></div>
         <Footer />
       </div>
+      </>
     );
   }
   
   return (
-    <div className="page-container">
+    <>
       <Navbar />
+    <div className="page-container">
       <div className="navbar-spacing"></div>
       <div className="content-wrapper">
         <div className="cart-container">
@@ -103,6 +89,7 @@ const Cart = () => {
       <div className="footer-spacing"></div>
       <Footer />
     </div>
+          </>
   );
 };
 

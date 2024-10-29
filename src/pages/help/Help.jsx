@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../../components/navbar/Navbar';
 import Footer from '../../components/footer/Footer';
 import './help.css';
+import { useLocation } from 'react-router-dom';
 
 const Help = () => {
+    const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const element = document.querySelector(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, [hash]); // Run this effect whenever the hash changes
     return (
         <div>
             <Navbar />
-            <div className="help-container spaced-container">
+            <div  className="help-container spaced-container">
                 <section id="store-policy" className="help-section">
                     <h2 className="section-title">STORE POLICY</h2>
                     <h3>Returns and refunds</h3>

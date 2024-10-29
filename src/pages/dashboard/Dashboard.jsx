@@ -23,7 +23,7 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true)
+        setLoading(true);
         const response = await getProducts();
         setProducts(response);
       } catch (error) {
@@ -38,12 +38,17 @@ const Dashboard = () => {
   if (loading) {
     return <Loading />;
   }
-  const sliderSettings = {
+  const productsSliderSettings = {
+    className: "slider variable-width",
     dots: true,
-    infinite: true,
+    infinite: false,
     speed: 500,
+    lazyLoad: true,
     slidesToShow: 4,
     slidesToScroll: 4,
+    initialSlide: 0,
+    draggable: true,
+    rows: 1,
     responsive: [
       {
         breakpoint: 1024,
@@ -67,9 +72,19 @@ const Dashboard = () => {
         },
       },
     ],
-    
   };
-
+  const imagesSliderSettings = {
+    dots: false,
+    fade: true,
+    lazyLoad: true,
+    autoplay: true,
+    infinite: true,
+    speed: 700,
+    waitForAnimate: false,
+    draggable: true,
+    initialSlide: 0,
+    arrows: false,
+  };
   return (
     <main>
       <Navbar />
@@ -78,24 +93,30 @@ const Dashboard = () => {
           <h2 className="dashboard-title">Discover Our Story</h2>
           <div className="dashboard-content">
             <div className="dashboard-images">
-              <img
-                src={placeholder1}
-                alt="Placeholder 1"
-                className="dashboard-image image1"
-              />
-              <img
-                src={placeholder2}
-                alt="Placeholder 2"
-                className="dashboard-image image2"
-              />
+              <Slider {...imagesSliderSettings}>
+                <img
+                  src={placeholder1}
+                  alt="Placeholder 1"
+                  className="dashboard-image1"
+                />
+
+                <img
+                  src={placeholder2}
+                  alt="Placeholder 2"
+                  className="dashboard-image2"
+                />
+              </Slider>
             </div>
+
             <div className="dashboard-text">
               <p>
-                Welcome to our world of homemade soaps and candles! Discover our
-                passion for crafting eco-friendly, handmade products using only
-                the finest natural ingredients.
+                Welcome to our world of artisanal soaps and candles! Discover
+                our passion for crafting eco-friendly, handmade products. Each
+                item is thoughtfully made using only the finest natural
+                ingredients, bringing a touch of nature and care into your daily
+                rituals.
               </p>
-              <Link to="/about" className="about-button">
+              <Link to="/about" className="dashboard-button">
                 Learn More About Us
               </Link>
             </div>
@@ -103,7 +124,8 @@ const Dashboard = () => {
         </section>
         <section className="products-section">
           <h2>Soaps</h2>
-          <Slider {...sliderSettings}>
+
+          <Slider {...productsSliderSettings}>
             {soaps.map((product) => (
               <div key={product._id} className="product-card">
                 <Link to={`/product/${product._id}`}>
@@ -114,7 +136,9 @@ const Dashboard = () => {
                   />
                 </Link>
                 <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
+                  <Link className="product-name">
+                    <h3 className="product-name">{product.name} </h3>
+                  </Link>
                   <p className="product-price">Price: {product.price} $</p>
                 </div>
               </div>
@@ -124,7 +148,7 @@ const Dashboard = () => {
 
         <section className="products-section">
           <h2>Candles</h2>
-          <Slider {...sliderSettings}>
+          <Slider {...productsSliderSettings}>
             {candles.map((product) => (
               <div key={product._id} className="product-card">
                 <Link to={`/product/${product._id}`}>
@@ -135,7 +159,9 @@ const Dashboard = () => {
                   />
                 </Link>
                 <div className="product-info">
-                  <h3 className="product-name">{product.name}</h3>
+                  <Link className="product-name">
+                    <h3 className="product-name">{product.name}</h3>
+                  </Link>
                   <p className="product-price">Price: {product.price} $</p>
                 </div>
               </div>

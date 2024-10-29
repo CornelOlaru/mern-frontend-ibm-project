@@ -6,12 +6,16 @@ import { CartContext } from '../../context/cartContext';
 import './productDetails.css';
 import { getProductById, getProducts } from '../../services/apiService';
 import Loading from '../../components/loading spinners/Loading';
+import { FavoriteContext } from '../../context/favoriteContext';
+import { MdFavorite, MdFavoriteBorder } from 'react-icons/md';
+import { FiShoppingCart } from 'react-icons/fi';
 
 const ProductDetails = () => {
   const { productId } = useParams();
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
   const { addToCart } = useContext(CartContext);
+  const { addToFavorite } = useContext(FavoriteContext);
   const token = localStorage.getItem("token");
   const [loading, setLoading] = useState(false);
 
@@ -58,21 +62,27 @@ const ProductDetails = () => {
     const quantity = parseInt(document.getElementById('quantity').value);
     addToCart(product, quantity);
   };
-
+  const handleAddToFavorite = () => {
+    const quantity = parseInt(document.getElementById('quantity').value);
+    addToFavorite(product, quantity);
+  };
   return (
-    <main>
+    <>
     <Navbar />
     <div className="product-page">
       <div className="product-details">
         <img src={imageUrl.url} alt={imageUrl.filename} className="product-image" />
         <div className="product-info">
           <h1 className="product-name">{name}</h1>
-          <p className="product-price">${price}</p>
+          <p className="product-price">Price: ${price}</p>
           <div className="quantity">
-            <label htmlFor="quantity">Quantity</label>
+            <label htmlFor="quantity">Quantity:</label>
             <input type="number" id="quantity" name="quantity" min="1" defaultValue="1" />
           </div>
-          <button className="button add-to-cart" onClick={handleAddToCart}>Add to Cart</button>
+          <button className="button add-to-cart" onClick={handleAddToCart}>
+          <FiShoppingCart className="" style={{marginRight:".5rem"}} />
+          Add to Cart</button>
+          <button className="button add-to-favorite" onClick={handleAddToFavorite}><MdFavoriteBorder style={{marginRight:".5rem"}}/>Add to Favorite</button>
           <p className="product-category">Category: {category}</p>
           <p className="product-description">{description}</p>
         </div>
@@ -82,12 +92,12 @@ const ProductDetails = () => {
         <h2>Related Products</h2>
         <div className="related-products-grid">
           {relatedProducts.map((relatedProduct) => (
-            <div key={relatedProduct._id} className="related-product-card">
+            <div key={relatedProduct._id} className="product-card">
               <Link to={`/product/${relatedProduct._id}`}>
-                <img src={relatedProduct.imageUrl.url} alt={relatedProduct.imageUrl.filename} className="related-product-image" />
+                <img src={relatedProduct.imageUrl.url} alt={relatedProduct.imageUrl.filename} className="product-image" />
               </Link>
-              <h3 className="related-product-name">{relatedProduct.name}</h3>
-              <p className="related-product-price">${relatedProduct.price}</p>
+              <h3 className="product-name">{relatedProduct.name}</h3>
+              <p className="product-price">${relatedProduct.price}</p>
               <div className="quantity">
                 <label htmlFor={`quantity-${relatedProduct._id}`}>Quantity</label>
                 <input type="number" id={`quantity-${relatedProduct._id}`} name={`quantity-${relatedProduct._id}`} min="1" defaultValue="1" />
@@ -99,7 +109,7 @@ const ProductDetails = () => {
       </div>
     </div>
     < Footer />
-    </main>
+    </>
   );
 };
 

@@ -20,7 +20,7 @@
   --dark-purple: rgba(188, 111, 252, 0.5);
   --gray:rgba(200, 200, 200, 1);
   --green:rgb(78, 121, 84);
-  --dark-green:rgba(48, 76, 52, 0.8);
+  --dark-green:#39664b;
   --beige:#f6f6ec;
 }
 
@@ -35,6 +35,7 @@ body{
   scroll-padding-top: 70px;
   padding-top: 60px;
 }
+
 .error-message{
   width: 70%;
   margin: 0 auto;
