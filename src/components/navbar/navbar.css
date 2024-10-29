@@ -207,7 +207,7 @@
 }
 .cart-count {
   position: absolute;
-  bottom: 10px;
+  bottom: 15px;
   right: 20px;
   background-color: green;
   color: white;
@@ -220,7 +220,21 @@
   justify-content: center;
   align-items: center;
 }
-
+.favorite-count {
+  position: absolute;
+  bottom: 15px;
+  right: 70px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  padding: 2px 7px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  line-height: 0.9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .hamburgerMenu {
   opacity: 0;
 }
@@ -309,10 +323,11 @@
   .hamburgerMenu {
     display: flex;
     align-items: center;
-    
+    justify-content: flex-start;
     opacity: 1;
     transition: opacity 0.8s ease-in;
     font-size: 1.5em;
+    
   }
 
   .hamburgerMenu.active {
@@ -435,17 +450,33 @@
     font-size: 1.5em;
   }
   .header-container {
-    justify-content: space-around;
+    gap: 3rem;
+    margin-left: 2rem;
   }
 
   .cart-count {
     position: absolute;
     bottom: 15px;
-    right: 15px;
+    right: 10px;
     background-color: green;
     color: white;
     border-radius: 50%;
-    padding: 2px 7px;
+    padding: 3px 7px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    line-height: 0.9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .favorite-count {
+    position: absolute;
+    bottom: 15px;
+    right: 45px;
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 7px;
     font-size: 0.9rem;
     font-weight: bold;
     line-height: 0.9;

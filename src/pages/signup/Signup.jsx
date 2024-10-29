@@ -148,7 +148,7 @@ const Signup = () => {
             </p>
             <div className="form-row">
               <label className="form-label">Password</label>
-              <div className="form-input">
+              <div className="form-input password-input">
                 <input
                   id="password"
                   name="password"

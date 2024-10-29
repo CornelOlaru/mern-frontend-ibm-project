@@ -21,11 +21,13 @@ import UserId from "./pages/admin/subpages/UserId page/UserId";
 import OrderID from "./pages/admin/subpages/OrderId page/OrderID";
 import ProductId from "./pages/distributor/subpages/ProductId";
 import Preview from "./pages/demo/Preview";
+import Favorite from "./pages/favorites/Favorite";
+import { FavoriteProvider } from "./context/favoriteContext";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Preview />,
+    element: <Dashboard />,
   },
   {
     path: "login",
@@ -117,7 +119,15 @@ const router = createBrowserRouter([
     ],
   },
  
-  
+  {
+    element: <ProtectedRoutes roles={["customer"]} />,
+    children: [
+      {
+        path: "/favorite",
+        element: <Favorite />,
+      },
+    ],
+  },
   {
     path: "cart",
     element: <Cart/>,
@@ -131,8 +141,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <CartProvider> {}
+    <CartProvider> 
+      <FavoriteProvider>
+
       <RouterProvider router={router} />
+      </FavoriteProvider>
     </CartProvider>
   </React.StrictMode>
 );

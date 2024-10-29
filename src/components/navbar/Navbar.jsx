@@ -21,6 +21,7 @@ import Dropdown from "../dropdown/dropdown/Dropdown";
 import DropdownItem from "../dropdown/dropdown item/DropdownItem";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoSearch } from "react-icons/io5";
+import { FavoriteContext } from "../../context/favoriteContext";
 
 const Navbar = () => {
   const [color, setColor] = useState(false);
@@ -70,6 +71,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const { getTotalItems } = useContext(CartContext); // Folosește contextul pentru a obține numărul de produse din coș
+  const {getTotalFavoriteItems} = useContext(FavoriteContext);
   const handleClick = () => {
     localStorage.removeItem("token");
 
@@ -152,13 +154,13 @@ const Navbar = () => {
                         </div>
                       </div>
                     </div>
-                    <Link to="#" className="favorite-icon">
+                    <Link to="/favorite" className="favorite-icon">
                       <IconContext.Provider value={{ size: "", className: "" }}>
                         <MdFavoriteBorder />
                       </IconContext.Provider>
-                      {getTotalItems() > 0 && (
-                        <span className="cart-count">{getTotalItems()}</span>
-                      )}
+                      {/* {getTotalItems() > 0 && ( */}
+                        <span className="favorite-count">{getTotalFavoriteItems()}</span>
+                       {/* )} */}
                     </Link>
                     <Link to="/cart" className="cart-icon">
                       <IconContext.Provider value={{ size: "", className: "" }}>
@@ -260,13 +262,13 @@ const Navbar = () => {
                     </div>
                   </div>
                 </div>
-                <Link to="#" className="favorite-icon">
+                <Link to="/favorite" className="favorite-icon">
                   <IconContext.Provider value={{ size: "", className: "" }}>
                     <MdFavoriteBorder />
                   </IconContext.Provider>
-                  {getTotalItems() > 0 && (
-                    <span className="cart-count">{getTotalItems()}</span>
-                  )}
+                  {getTotalFavoriteItems() > 0 && (
+                    <span className="favorite-count">{getTotalFavoriteItems()}</span>
+                   )} 
                 </Link>
                 <Link to="/cart" className="cart-icon">
                   <IconContext.Provider value={{ size: "", className: "" }}>
