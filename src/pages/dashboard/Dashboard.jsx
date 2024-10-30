@@ -11,6 +11,7 @@ import placeholder1 from "../../images/placeholder1.png";
 import placeholder2 from "../../images/placeholder2.jpg";
 import { getProducts } from "../../services/apiService";
 import Loading from "../../components/loading spinners/Loading";
+import Modal from "../../components/modal/Modal";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ const Dashboard = () => {
   const soaps = products.filter((product) => product.category === "Soaps");
   const candles = products.filter((product) => product.category === "Candles");
   const [loading, setLoading] = useState(false);
-
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -85,9 +86,26 @@ const Dashboard = () => {
     initialSlide: 0,
     arrows: false,
   };
+
   return (
     <main>
       <Navbar />
+      <Modal
+        shouldShow={showModal}
+        onRequestClose={() => {
+          setShowModal((prev) => !prev);
+        }}
+      >
+        <div>Your Modal</div>
+        <p>
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora
+          architecto, expedita omnis eligendi eum enim in velit necessitatibus
+          hic sed aliquam dolores autem voluptate saepe, quae ad obcaecati
+          accusantium facilis pariatur sit rem. Quos consequuntur, consequatur,
+          suscipit quam dolor excepturi fuga aut quas soluta maiores ipsum,
+          expedita facere vel eum!
+        </p>
+      </Modal>
       <div className="dashboard-container">
         <section className="dashboard-section">
           <h2 className="dashboard-title">Discover Our Story</h2>
@@ -119,6 +137,15 @@ const Dashboard = () => {
               <Link to="/about" className="dashboard-button">
                 Learn More About Us
               </Link>
+              <div className="">
+                <button
+                  onClick={() => {
+                    setShowModal((prev) => !prev);
+                  }}
+                >
+                  show modal
+                </button>
+              </div>
             </div>
           </div>
         </section>
