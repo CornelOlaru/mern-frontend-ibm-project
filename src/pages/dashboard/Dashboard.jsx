@@ -138,13 +138,13 @@ const Dashboard = () => {
                 Learn More About Us
               </Link>
               <div className="">
-                <button
+                {/* <button
                   onClick={() => {
                     setShowModal((prev) => !prev);
                   }}
                 >
                   show modal
-                </button>
+                </button> */}
               </div>
             </div>
           </div>
