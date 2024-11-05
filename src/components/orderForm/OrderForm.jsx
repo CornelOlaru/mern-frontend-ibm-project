@@ -62,7 +62,7 @@ const items = cart.map(item => ({
   
     try {
       
-      const response = await fetch('http://localhost:3001/api/orders', { // Replace with your actual API endpoint
+      const response = await fetch('https://mern-backend-ibm-project.vercel.app/api/orders', { // Replace with your actual API endpoint
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

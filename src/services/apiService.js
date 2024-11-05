@@ -5,7 +5,7 @@ const DEV_API_BASE_URL = "http://localhost:3001";
 const fetchData = async (endpoint, method = "GET", body, token = null) => {
   try {
     
-    const response = await fetch(`${DEV_API_BASE_URL}/${endpoint}`, {
+    const response = await fetch(`${PROD_API_BASE_URL}/${endpoint}`, {
       method,
       headers: {
         Authorization: token ? `Bearer ${token}` : undefined,
