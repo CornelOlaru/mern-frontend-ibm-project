@@ -90,7 +90,7 @@ const Dashboard = () => {
   return (
     <main>
       <Navbar />
-      <Modal
+      {/* <Modal
         shouldShow={showModal}
         onRequestClose={() => {
           setShowModal((prev) => !prev);
@@ -105,7 +105,7 @@ const Dashboard = () => {
           suscipit quam dolor excepturi fuga aut quas soluta maiores ipsum,
           expedita facere vel eum!
         </p>
-      </Modal>
+      </Modal> */}
       <div className="dashboard-container">
         <section className="dashboard-section">
           <h2 className="dashboard-title">Discover Our Story</h2>
